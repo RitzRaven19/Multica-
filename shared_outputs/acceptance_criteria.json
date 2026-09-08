@@ -1,490 +1,514 @@
 [
-    {
-        "ac_id":  "AC-001.1",
-        "requirement_id":  "FR-001",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-002",
-                            "KYC-002"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Register with valid Aadhaar and PAN",
-        "then":  "Registration completes and the customer sees KYC recorded as Pending."
-    },
-    {
-        "ac_id":  "AC-001.2",
-        "requirement_id":  "FR-001",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-002",
-                            "KYC-002"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Submit an Aadhaar or PAN value in an invalid format",
-        "then":  "Registration is not completed and the customer sees the relevant document-format message."
-    },
-    {
-        "ac_id":  "AC-002.1",
-        "requirement_id":  "FR-002",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "ACC-002"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Activate a pending account as Bank operations",
-        "then":  "Bank operations sees the account marked Active and available for use."
-    },
-    {
-        "ac_id":  "AC-002.2",
-        "requirement_id":  "FR-002",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "ACC-002"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Simulate a failure while saving the account activation",
-        "then":  "Bank operations sees the save-failure message and the account is not presented as activated."
-    },
-    {
-        "ac_id":  "AC-003.1",
-        "requirement_id":  "FR-003",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Sign in with valid Customer credentials",
-        "then":  "The user reaches the role-appropriate signed-in landing page."
-    },
-    {
-        "ac_id":  "AC-003.2",
-        "requirement_id":  "FR-003",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Sign in with invalid credentials",
-        "then":  "The user remains signed out and sees the incorrect sign-in-details message."
-    },
-    {
-        "ac_id":  "AC-004.1",
-        "requirement_id":  "FR-004",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "SESSION-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Sign out from an active session",
-        "then":  "The user is returned to the signed-out screen and protected pages no longer open."
-    },
-    {
-        "ac_id":  "AC-004.2",
-        "requirement_id":  "FR-004",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "SESSION-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Simulate a failure to terminate an active session",
-        "then":  "The user sees that the session could not be ended and can try signing out again."
-    },
-    {
-        "ac_id":  "AC-005.1",
-        "requirement_id":  "FR-005",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "ACC-002"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Send a valid synthetic transfer from an active account",
-        "then":  "The customer sees a successful synthetic transfer confirmation and updated transaction status."
-    },
-    {
-        "ac_id":  "AC-005.2",
-        "requirement_id":  "FR-005",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "ACC-002"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Submit a transfer amount of zero",
-        "then":  "The customer sees the positive-amount message and no transfer is completed."
-    },
-    {
-        "ac_id":  "AC-006.1",
-        "requirement_id":  "FR-006",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "ACC-002",
-                            "TXN-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Receive a valid synthetic incoming transfer into an active account",
-        "then":  "The customer sees the credited balance and a completed incoming transaction."
-    },
-    {
-        "ac_id":  "AC-006.2",
-        "requirement_id":  "FR-006",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "ACC-002",
-                            "TXN-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Attempt to receive a transfer while not signed in",
-        "then":  "The user sees the sign-in prompt and no account information is shown."
-    },
-    {
-        "ac_id":  "AC-007.1",
-        "requirement_id":  "FR-007",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "STMT-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "View a permitted account statement while signed in",
-        "then":  "The user sees the statement entries for the permitted account."
-    },
-    {
-        "ac_id":  "AC-007.2",
-        "requirement_id":  "FR-007",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "STMT-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Request a statement while not signed in",
-        "then":  "The user sees the sign-in prompt instead of statement content."
-    },
-    {
-        "ac_id":  "AC-008.1",
-        "requirement_id":  "FR-008",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "STMT-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Download the signed-in customerâ€™s statement",
-        "then":  "The customer receives a downloadable statement file for their own account."
-    },
-    {
-        "ac_id":  "AC-008.2",
-        "requirement_id":  "FR-008",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "STMT-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Request a statement download while not signed in",
-        "then":  "The user sees the sign-in prompt and no statement file is downloaded."
-    },
-    {
-        "ac_id":  "AC-009.1",
-        "requirement_id":  "FR-009",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "AUDIT-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "View the audit trail as Bank operations",
-        "then":  "Bank operations sees account and KYC changes with actor, action, and timestamp."
-    },
-    {
-        "ac_id":  "AC-009.2",
-        "requirement_id":  "FR-009",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "AUDIT-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Request the audit trail while not signed in",
-        "then":  "The user sees the sign-in prompt and no audit entries are shown."
-    },
-    {
-        "ac_id":  "AC-010.1",
-        "requirement_id":  "FR-010",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "ACC-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Attempt to initiate a transfer as Bank operations and enforce the restriction",
-        "then":  "Bank operations sees a permission-denied message and no transfer is created."
-    },
-    {
-        "ac_id":  "AC-010.2",
-        "requirement_id":  "FR-010",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "ACC-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Attempt to initiate a transfer as Bank operations without a signed-in session",
-        "then":  "The user sees the sign-in prompt and no transfer is created."
-    },
-    {
-        "ac_id":  "AC-011.1",
-        "requirement_id":  "FR-011",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "SESSION-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Open a protected Customer action after signing in",
-        "then":  "The signed-in user can continue to the requested protected action."
-    },
-    {
-        "ac_id":  "AC-011.2",
-        "requirement_id":  "FR-011",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "SESSION-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Open the same protected Customer action without signing in",
-        "then":  "The user sees the sign-in prompt and protected data is not displayed."
-    },
-    {
-        "ac_id":  "AC-012.1",
-        "requirement_id":  "FR-012",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "OPS-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "View only the signed-in userâ€™s permitted sensitive data",
-        "then":  "The user sees only data permitted for their role."
-    },
-    {
-        "ac_id":  "AC-012.2",
-        "requirement_id":  "FR-012",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "OPS-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Attempt to access sensitive data outside the userâ€™s role permission",
-        "then":  "The user sees the permission-denied message and no restricted data."
-    },
-    {
-        "ac_id":  "AC-013.1",
-        "requirement_id":  "FR-013",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Complete a representative journey using keyboard navigation and accessible labels",
-        "then":  "The user can identify, focus, and operate the controls and receives understandable feedback."
-    },
-    {
-        "ac_id":  "AC-013.2",
-        "requirement_id":  "FR-013",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Use an accessibility audit that detects a missing required accessible control name",
-        "then":  "The release is blocked from acceptance and the accessibility failure is reported for correction."
-    },
-    {
-        "ac_id":  "AC-014.1",
-        "requirement_id":  "FR-014",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "ACC-002"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Activate an account and reload the journey after a successful save",
-        "then":  "After reload, the user sees the saved state with no lost change."
-    },
-    {
-        "ac_id":  "AC-014.2",
-        "requirement_id":  "FR-014",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "ACC-002"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Simulate a persistence failure while saving an account state change",
-        "then":  "The user sees the save-failure message and the unpersisted change is not presented as complete."
-    },
-    {
-        "ac_id":  "AC-015.1",
-        "requirement_id":  "FR-015",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Run a journey with deterministic fixtures and stable UI selectors",
-        "then":  "The test executes repeatably against the documented fixture and controls."
-    },
-    {
-        "ac_id":  "AC-015.2",
-        "requirement_id":  "FR-015",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Run automated validation when a required stable selector is unavailable",
-        "then":  "The testability acceptance failure is reported and the release is blocked from acceptance."
-    },
-    {
-        "ac_id":  "AC-016.1",
-        "requirement_id":  "FR-016",
-        "type":  "positive",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "AUDIT-001"
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Perform a state change and inspect its audit record",
-        "then":  "Bank operations sees an audit entry with actor, action, and timestamp."
-    },
-    {
-        "ac_id":  "AC-016.2",
-        "requirement_id":  "FR-016",
-        "type":  "negative",
-        "fixture_ids":  [
-                            "OPS-001",
-                            "AUDIT-001"
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Simulate failure to persist the audit record for a state change",
-        "then":  "The user sees the save-failure message and the incomplete state change is not confirmed."
-    },
-    {
-        "ac_id":  "AC-017.1",
-        "requirement_id":  "FR-017",
-        "type":  "positive",
-        "fixture_ids":  [
-
-                        ],
-        "given":  "the required role and approved fixtures are available",
-        "when":  "Review a business ruleâ€™s linked requirement, acceptance criterion, UAT, and evidence fields",
-        "then":  "The reviewer can follow the complete linked record and sees it marked DRAFT pending human approval."
-    },
-    {
-        "ac_id":  "AC-017.2",
-        "requirement_id":  "FR-017",
-        "type":  "negative",
-        "fixture_ids":  [
-
-                        ],
-        "given":  "the role attempts the unsupported, invalid, or unauthenticated action",
-        "when":  "Attempt to approve an artifact that lacks a required traceability link or human approval",
-        "then":  "The reviewer sees the governance validation failure and the artifact is not treated as approved."
-    },
-    {
-        "ac_id":  "AC-005.3",
-        "requirement_id":  "FR-005",
-        "type":  "boundary",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "ACC-BAL-BELOW"
-                        ],
-        "given":  "an authenticated Customer has the approved MIN_BALANCE boundary fixture",
-        "when":  "Attempt an outward transfer that would leave the balance MIN_BALANCE - 0.01.",
-        "then":  "The customer sees the minimum-balance message and no transfer is completed."
-    },
-    {
-        "ac_id":  "AC-005.4",
-        "requirement_id":  "FR-005",
-        "type":  "boundary",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "ACC-BAL-BOUNDARY"
-                        ],
-        "given":  "an authenticated Customer has the approved MIN_BALANCE boundary fixture",
-        "when":  "Attempt an outward transfer that leaves the balance exactly MIN_BALANCE.",
-        "then":  "The customer sees the transfer complete because the minimum balance is maintained."
-    },
-    {
-        "ac_id":  "AC-005.5",
-        "requirement_id":  "FR-005",
-        "type":  "boundary",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "ACC-BAL-ABOVE"
-                        ],
-        "given":  "an authenticated Customer has the approved MIN_BALANCE boundary fixture",
-        "when":  "Attempt an outward transfer that leaves the balance MIN_BALANCE + 0.01.",
-        "then":  "The customer sees the transfer complete and the balance remains above the minimum."
-    },
-    {
-        "ac_id":  "AC-005.6",
-        "requirement_id":  "FR-005",
-        "type":  "boundary",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "TXN-UNDER-CAP"
-                        ],
-        "given":  "an authenticated Customer has the approved DAILY_TRANSFER_CAP boundary fixture",
-        "when":  "Submit a daily transfer total of DAILY_TRANSFER_CAP - 0.01.",
-        "then":  "The customer sees the synthetic transfer complete."
-    },
-    {
-        "ac_id":  "AC-005.7",
-        "requirement_id":  "FR-005",
-        "type":  "boundary",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "TXN-SUCCESS-BOUNDARY"
-                        ],
-        "given":  "an authenticated Customer has the approved DAILY_TRANSFER_CAP boundary fixture",
-        "when":  "Submit a daily transfer total exactly equal to DAILY_TRANSFER_CAP.",
-        "then":  "The customer sees the synthetic transfer complete at the limit."
-    },
-    {
-        "ac_id":  "AC-005.8",
-        "requirement_id":  "FR-005",
-        "type":  "boundary",
-        "fixture_ids":  [
-                            "CUST-001",
-                            "ACC-001",
-                            "TXN-OVER-CAP"
-                        ],
-        "given":  "an authenticated Customer has the approved DAILY_TRANSFER_CAP boundary fixture",
-        "when":  "Submit a daily transfer total of DAILY_TRANSFER_CAP + 0.01.",
-        "then":  "The customer sees the daily transfer limit message and no transfer is completed."
-    }
+  {
+    "ac_id": "AC-001.1",
+    "requirement_id": "FR-001",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "KYC-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal customer registration and kyc journey",
+    "then": "the user sees confirmation that customer registration and kyc completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-001.2",
+    "requirement_id": "FR-001",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "KYC-001"
+    ],
+    "given": "the user is in a state that violates a required condition for customer registration and kyc",
+    "when": "the user attempts customer registration and kyc with that invalid condition",
+    "then": "the user sees the applicable error message: The Aadhaar number must be exactly 12 digits. Please correct it and try again."
+  },
+  {
+    "ac_id": "AC-002.1",
+    "requirement_id": "FR-002",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "KYC-002",
+      "ACC-002",
+      "OPS-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal account onboarding and activation journey",
+    "then": "the user sees confirmation that account onboarding and activation completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-002.2",
+    "requirement_id": "FR-002",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "KYC-002",
+      "ACC-002",
+      "OPS-001"
+    ],
+    "given": "the user is in a state that violates a required condition for account onboarding and activation",
+    "when": "the user attempts account onboarding and activation with that invalid condition",
+    "then": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+  },
+  {
+    "ac_id": "AC-003.1",
+    "requirement_id": "FR-003",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal role-based login journey",
+    "then": "the user sees confirmation that role-based login completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-003.2",
+    "requirement_id": "FR-003",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001"
+    ],
+    "given": "the user is in a state that violates a required condition for role-based login",
+    "when": "the user attempts role-based login with that invalid condition",
+    "then": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+  },
+  {
+    "ac_id": "AC-004.1",
+    "requirement_id": "FR-004",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "SESSION-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal logout journey",
+    "then": "the user sees confirmation that logout completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-004.2",
+    "requirement_id": "FR-004",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "SESSION-001"
+    ],
+    "given": "the user is in a state that violates a required condition for logout",
+    "when": "the user attempts logout with that invalid condition",
+    "then": "the user sees the applicable error message: We could not end your session. Please try signing out again."
+  },
+  {
+    "ac_id": "AC-005.1",
+    "requirement_id": "FR-005",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "TXN-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal synthetic money transfer journey",
+    "then": "the user sees confirmation that synthetic money transfer completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-005.2",
+    "requirement_id": "FR-005",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "TXN-001"
+    ],
+    "given": "the user is in a state that violates a required condition for synthetic money transfer",
+    "when": "the user attempts synthetic money transfer with that invalid condition",
+    "then": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+  },
+  {
+    "ac_id": "AC-006.1",
+    "requirement_id": "FR-006",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "TXN-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal receive synthetic money transfer journey",
+    "then": "the user sees confirmation that receive synthetic money transfer completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-006.2",
+    "requirement_id": "FR-006",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "TXN-001"
+    ],
+    "given": "the user is in a state that violates a required condition for receive synthetic money transfer",
+    "when": "the user attempts receive synthetic money transfer with that invalid condition",
+    "then": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+  },
+  {
+    "ac_id": "AC-007.1",
+    "requirement_id": "FR-007",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001",
+      "ACC-001",
+      "STMT-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal view account statement journey",
+    "then": "the user sees confirmation that view account statement completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-007.2",
+    "requirement_id": "FR-007",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001",
+      "ACC-001",
+      "STMT-001"
+    ],
+    "given": "the user is in a state that violates a required condition for view account statement",
+    "when": "the user attempts view account statement with that invalid condition",
+    "then": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+  },
+  {
+    "ac_id": "AC-008.1",
+    "requirement_id": "FR-008",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "STMT-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal download account statement journey",
+    "then": "the user sees confirmation that download account statement completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-008.2",
+    "requirement_id": "FR-008",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "STMT-001"
+    ],
+    "given": "the user is in a state that violates a required condition for download account statement",
+    "when": "the user attempts download account statement with that invalid condition",
+    "then": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+  },
+  {
+    "ac_id": "AC-009.1",
+    "requirement_id": "FR-009",
+    "type": "positive",
+    "fixture_ids": [
+      "OPS-001",
+      "AUDIT-001"
+    ],
+    "given": "the required Bank operations fixture and permitted state are available",
+    "when": "the user completes the normal view audit trail journey",
+    "then": "the user sees confirmation that view audit trail completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-009.2",
+    "requirement_id": "FR-009",
+    "type": "negative",
+    "fixture_ids": [
+      "OPS-001",
+      "AUDIT-001"
+    ],
+    "given": "the user is in a state that violates a required condition for view audit trail",
+    "when": "the user attempts view audit trail with that invalid condition",
+    "then": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+  },
+  {
+    "ac_id": "AC-010.1",
+    "requirement_id": "FR-010",
+    "type": "positive",
+    "fixture_ids": [
+      "OPS-001",
+      "ACC-001"
+    ],
+    "given": "the required Bank operations fixture and permitted state are available",
+    "when": "the user completes the normal prevent bank operations fund transfers journey",
+    "then": "the user sees confirmation that prevent bank operations fund transfers completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-010.2",
+    "requirement_id": "FR-010",
+    "type": "negative",
+    "fixture_ids": [
+      "OPS-001",
+      "ACC-001"
+    ],
+    "given": "the user is in a state that violates a required condition for prevent bank operations fund transfers",
+    "when": "the user attempts prevent bank operations fund transfers with that invalid condition",
+    "then": "the user sees the applicable error message: You do not have permission to do this. Please contact an administrator if you believe this is a mistake."
+  },
+  {
+    "ac_id": "AC-011.1",
+    "requirement_id": "FR-011",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001",
+      "SESSION-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal authentication for all actions journey",
+    "then": "the user sees confirmation that authentication for all actions completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-011.2",
+    "requirement_id": "FR-011",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001",
+      "SESSION-001"
+    ],
+    "given": "the user is in a state that violates a required condition for authentication for all actions",
+    "when": "the user attempts authentication for all actions with that invalid condition",
+    "then": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+  },
+  {
+    "ac_id": "AC-012.1",
+    "requirement_id": "FR-012",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001",
+      "KYC-001",
+      "ACC-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal sensitive data access restricted by role journey",
+    "then": "the user sees confirmation that sensitive data access restricted by role completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-012.2",
+    "requirement_id": "FR-012",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001",
+      "KYC-001",
+      "ACC-001"
+    ],
+    "given": "the user is in a state that violates a required condition for sensitive data access restricted by role",
+    "when": "the user attempts sensitive data access restricted by role with that invalid condition",
+    "then": "the user sees the applicable error message: You do not have permission to do this. Please contact an administrator if you believe this is a mistake."
+  },
+  {
+    "ac_id": "AC-013.1",
+    "requirement_id": "FR-013",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal accessibility journey",
+    "then": "the user sees confirmation that accessibility completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-013.2",
+    "requirement_id": "FR-013",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001"
+    ],
+    "given": "the user is in a state that violates a required condition for accessibility",
+    "when": "the user attempts accessibility with that invalid condition",
+    "then": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+  },
+  {
+    "ac_id": "AC-014.1",
+    "requirement_id": "FR-014",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001",
+      "ACC-002",
+      "AUDIT-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal reliable persistence of state changes journey",
+    "then": "the user sees confirmation that reliable persistence of state changes completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-014.2",
+    "requirement_id": "FR-014",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "OPS-001",
+      "ACC-002",
+      "AUDIT-001"
+    ],
+    "given": "the user is in a state that violates a required condition for reliable persistence of state changes",
+    "when": "the user attempts reliable persistence of state changes with that invalid condition",
+    "then": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+  },
+  {
+    "ac_id": "AC-015.1",
+    "requirement_id": "FR-015",
+    "type": "positive",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal testability journey",
+    "then": "the user sees confirmation that testability completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-015.2",
+    "requirement_id": "FR-015",
+    "type": "negative",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001"
+    ],
+    "given": "the user is in a state that violates a required condition for testability",
+    "when": "the user attempts testability with that invalid condition",
+    "then": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+  },
+  {
+    "ac_id": "AC-016.1",
+    "requirement_id": "FR-016",
+    "type": "positive",
+    "fixture_ids": [
+      "OPS-001",
+      "AUDIT-001"
+    ],
+    "given": "the required Customer fixture and permitted state are available",
+    "when": "the user completes the normal audit trail recording journey",
+    "then": "the user sees confirmation that audit trail recording completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-016.2",
+    "requirement_id": "FR-016",
+    "type": "negative",
+    "fixture_ids": [
+      "OPS-001",
+      "AUDIT-001"
+    ],
+    "given": "the user is in a state that violates a required condition for audit trail recording",
+    "when": "the user attempts audit trail recording with that invalid condition",
+    "then": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+  },
+  {
+    "ac_id": "AC-017.1",
+    "requirement_id": "FR-017",
+    "type": "positive",
+    "fixture_ids": [],
+    "given": "the required Bank operations fixture and permitted state are available",
+    "when": "the user completes the normal traceability and artifact governance journey",
+    "then": "the user sees confirmation that traceability and artifact governance completed and the permitted result is available"
+  },
+  {
+    "ac_id": "AC-017.2",
+    "requirement_id": "FR-017",
+    "type": "negative",
+    "fixture_ids": [],
+    "given": "the user is in a state that violates a required condition for traceability and artifact governance",
+    "when": "the user attempts traceability and artifact governance with that invalid condition",
+    "then": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+  },
+  {
+    "ac_id": "AC-005.3",
+    "requirement_id": "FR-005",
+    "type": "boundary",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "TXN-UNDER-CAP"
+    ],
+    "given": "an authenticated Customer has fixtures ACC-001 and TXN-UNDER-CAP",
+    "when": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP - 0.01",
+    "then": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+  },
+  {
+    "ac_id": "AC-005.4",
+    "requirement_id": "FR-005",
+    "type": "boundary",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "TXN-SUCCESS-BOUNDARY"
+    ],
+    "given": "an authenticated Customer has fixtures ACC-001 and TXN-SUCCESS-BOUNDARY",
+    "when": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP",
+    "then": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+  },
+  {
+    "ac_id": "AC-005.5",
+    "requirement_id": "FR-005",
+    "type": "boundary",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "TXN-OVER-CAP"
+    ],
+    "given": "an authenticated Customer has fixtures ACC-001 and TXN-OVER-CAP",
+    "when": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP + 0.01",
+    "then": "the customer sees: This transfer would exceed your daily transfer limit. Please wait until your limit resets or enter a smaller amount."
+  },
+  {
+    "ac_id": "AC-005.6",
+    "requirement_id": "FR-005",
+    "type": "boundary",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "ACC-BAL-BELOW"
+    ],
+    "given": "an authenticated Customer has fixtures ACC-001 and ACC-BAL-BELOW",
+    "when": "the Customer submits a synthetic transfer where the source balance is MIN_BALANCE - 0.01",
+    "then": "the customer sees: This transfer cannot be completed because it would leave your account below the required minimum balance. Please enter a smaller amount."
+  },
+  {
+    "ac_id": "AC-005.7",
+    "requirement_id": "FR-005",
+    "type": "boundary",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "ACC-BAL-BOUNDARY"
+    ],
+    "given": "an authenticated Customer has fixtures ACC-001 and ACC-BAL-BOUNDARY",
+    "when": "the Customer submits a synthetic transfer where the resulting source balance is MIN_BALANCE",
+    "then": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+  },
+  {
+    "ac_id": "AC-005.8",
+    "requirement_id": "FR-005",
+    "type": "boundary",
+    "fixture_ids": [
+      "CUST-001",
+      "ACC-001",
+      "ACC-002",
+      "ACC-BAL-ABOVE"
+    ],
+    "given": "an authenticated Customer has fixtures ACC-001 and ACC-BAL-ABOVE",
+    "when": "the Customer submits a synthetic transfer where the resulting source balance is MIN_BALANCE + 0.01",
+    "then": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+  }
 ]

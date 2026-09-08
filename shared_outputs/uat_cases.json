@@ -1,962 +1,922 @@
 [
-    {
-        "uat_id":  "UAT-001",
-        "title":  "AC-001.1: Register with valid Aadhaar and PAN",
-        "requirement_ids":  [
-                                "FR-001"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-002, KYC-002"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Register with valid Aadhaar and PAN",
-                          "expected":  "Registration completes and the customer sees KYC recorded as Pending."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-002",
-        "title":  "AC-001.2: Submit an Aadhaar or PAN value in an invalid format",
-        "requirement_ids":  [
-                                "FR-001"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-002, KYC-002"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Submit an Aadhaar or PAN value in an invalid format",
-                          "expected":  "Registration is not completed and the customer sees the relevant document-format message."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-003",
-        "title":  "AC-002.1: Activate a pending account as Bank operations",
-        "requirement_ids":  [
-                                "FR-002"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: OPS-001, ACC-002"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Activate a pending account as Bank operations",
-                          "expected":  "Bank operations sees the account marked Active and available for use."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-004",
-        "title":  "AC-002.2: Simulate a failure while saving the account activation",
-        "requirement_ids":  [
-                                "FR-002"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: OPS-001, ACC-002"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Simulate a failure while saving the account activation",
-                          "expected":  "Bank operations sees the save-failure message and the account is not presented as activated."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-005",
-        "title":  "AC-003.1: Sign in with valid Customer credentials",
-        "requirement_ids":  [
-                                "FR-003"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Sign in with valid Customer credentials",
-                          "expected":  "The user reaches the role-appropriate signed-in landing page."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-006",
-        "title":  "AC-003.2: Sign in with invalid credentials",
-        "requirement_ids":  [
-                                "FR-003"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Sign in with invalid credentials",
-                          "expected":  "The user remains signed out and sees the incorrect sign-in-details message."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-007",
-        "title":  "AC-004.1: Sign out from an active session",
-        "requirement_ids":  [
-                                "FR-004"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: SESSION-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Sign out from an active session",
-                          "expected":  "The user is returned to the signed-out screen and protected pages no longer open."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-008",
-        "title":  "AC-004.2: Simulate a failure to terminate an active session",
-        "requirement_ids":  [
-                                "FR-004"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: SESSION-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Simulate a failure to terminate an active session",
-                          "expected":  "The user sees that the session could not be ended and can try signing out again."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-009",
-        "title":  "AC-005.1: Send a valid synthetic transfer from an active account",
-        "requirement_ids":  [
-                                "FR-005"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001, ACC-001, ACC-002"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Send a valid synthetic transfer from an active account",
-                          "expected":  "The customer sees a successful synthetic transfer confirmation and updated transaction status."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-010",
-        "title":  "AC-005.2: Submit a transfer amount of zero",
-        "requirement_ids":  [
-                                "FR-005"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001, ACC-001, ACC-002"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Submit a transfer amount of zero",
-                          "expected":  "The customer sees the positive-amount message and no transfer is completed."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-011",
-        "title":  "AC-006.1: Receive a valid synthetic incoming transfer into an active account",
-        "requirement_ids":  [
-                                "FR-006"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001, ACC-001, ACC-002, TXN-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Receive a valid synthetic incoming transfer into an active account",
-                          "expected":  "The customer sees the credited balance and a completed incoming transaction."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-012",
-        "title":  "AC-006.2: Attempt to receive a transfer while not signed in",
-        "requirement_ids":  [
-                                "FR-006"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001, ACC-001, ACC-002, TXN-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Attempt to receive a transfer while not signed in",
-                          "expected":  "The user sees the sign-in prompt and no account information is shown."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-013",
-        "title":  "AC-007.1: View a permitted account statement while signed in",
-        "requirement_ids":  [
-                                "FR-007"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001, ACC-001, STMT-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "View a permitted account statement while signed in",
-                          "expected":  "The user sees the statement entries for the permitted account."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-014",
-        "title":  "AC-007.2: Request a statement while not signed in",
-        "requirement_ids":  [
-                                "FR-007"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001, ACC-001, STMT-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Request a statement while not signed in",
-                          "expected":  "The user sees the sign-in prompt instead of statement content."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-015",
-        "title":  "AC-008.1: Download the signed-in customerâ€™s statement",
-        "requirement_ids":  [
-                                "FR-008"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001, ACC-001, STMT-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Download the signed-in customerâ€™s statement",
-                          "expected":  "The customer receives a downloadable statement file for their own account."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-016",
-        "title":  "AC-008.2: Request a statement download while not signed in",
-        "requirement_ids":  [
-                                "FR-008"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001, ACC-001, STMT-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Request a statement download while not signed in",
-                          "expected":  "The user sees the sign-in prompt and no statement file is downloaded."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-017",
-        "title":  "AC-009.1: View the audit trail as Bank operations",
-        "requirement_ids":  [
-                                "FR-009"
-                            ],
-        "role":  "Bank operations",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: OPS-001, AUDIT-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "View the audit trail as Bank operations",
-                          "expected":  "Bank operations sees account and KYC changes with actor, action, and timestamp."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-018",
-        "title":  "AC-009.2: Request the audit trail while not signed in",
-        "requirement_ids":  [
-                                "FR-009"
-                            ],
-        "role":  "Bank operations",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: OPS-001, AUDIT-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Request the audit trail while not signed in",
-                          "expected":  "The user sees the sign-in prompt and no audit entries are shown."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-019",
-        "title":  "AC-010.1: Attempt to initiate a transfer as Bank operations and enforce the restriction",
-        "requirement_ids":  [
-                                "FR-010"
-                            ],
-        "role":  "Bank operations",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: OPS-001, ACC-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Attempt to initiate a transfer as Bank operations and enforce the restriction",
-                          "expected":  "Bank operations sees a permission-denied message and no transfer is created."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-020",
-        "title":  "AC-010.2: Attempt to initiate a transfer as Bank operations without a signed-in session",
-        "requirement_ids":  [
-                                "FR-010"
-                            ],
-        "role":  "Bank operations",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: OPS-001, ACC-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Attempt to initiate a transfer as Bank operations without a signed-in session",
-                          "expected":  "The user sees the sign-in prompt and no transfer is created."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-021",
-        "title":  "AC-011.1: Open a protected Customer action after signing in",
-        "requirement_ids":  [
-                                "FR-011"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001, SESSION-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Open a protected Customer action after signing in",
-                          "expected":  "The signed-in user can continue to the requested protected action."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-022",
-        "title":  "AC-011.2: Open the same protected Customer action without signing in",
-        "requirement_ids":  [
-                                "FR-011"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001, SESSION-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Open the same protected Customer action without signing in",
-                          "expected":  "The user sees the sign-in prompt and protected data is not displayed."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-023",
-        "title":  "AC-012.1: View only the signed-in userâ€™s permitted sensitive data",
-        "requirement_ids":  [
-                                "FR-012"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001, OPS-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "View only the signed-in userâ€™s permitted sensitive data",
-                          "expected":  "The user sees only data permitted for their role."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-024",
-        "title":  "AC-012.2: Attempt to access sensitive data outside the userâ€™s role permission",
-        "requirement_ids":  [
-                                "FR-012"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001, OPS-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Attempt to access sensitive data outside the userâ€™s role permission",
-                          "expected":  "The user sees the permission-denied message and no restricted data."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-025",
-        "title":  "AC-013.1: Complete a representative journey using keyboard navigation and accessible labels",
-        "requirement_ids":  [
-                                "FR-013"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Complete a representative journey using keyboard navigation and accessible labels",
-                          "expected":  "The user can identify, focus, and operate the controls and receives understandable feedback."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-026",
-        "title":  "AC-013.2: Use an accessibility audit that detects a missing required accessible control name",
-        "requirement_ids":  [
-                                "FR-013"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Use an accessibility audit that detects a missing required accessible control name",
-                          "expected":  "The release is blocked from acceptance and the accessibility failure is reported for correction."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-027",
-        "title":  "AC-014.1: Activate an account and reload the journey after a successful save",
-        "requirement_ids":  [
-                                "FR-014"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: OPS-001, ACC-002"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Activate an account and reload the journey after a successful save",
-                          "expected":  "After reload, the user sees the saved state with no lost change."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-028",
-        "title":  "AC-014.2: Simulate a persistence failure while saving an account state change",
-        "requirement_ids":  [
-                                "FR-014"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: OPS-001, ACC-002"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Simulate a persistence failure while saving an account state change",
-                          "expected":  "The user sees the save-failure message and the unpersisted change is not presented as complete."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-029",
-        "title":  "AC-015.1: Run a journey with deterministic fixtures and stable UI selectors",
-        "requirement_ids":  [
-                                "FR-015"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: CUST-001, ACC-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Run a journey with deterministic fixtures and stable UI selectors",
-                          "expected":  "The test executes repeatably against the documented fixture and controls."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-030",
-        "title":  "AC-015.2: Run automated validation when a required stable selector is unavailable",
-        "requirement_ids":  [
-                                "FR-015"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: CUST-001, ACC-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Run automated validation when a required stable selector is unavailable",
-                          "expected":  "The testability acceptance failure is reported and the release is blocked from acceptance."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-031",
-        "title":  "AC-016.1: Perform a state change and inspect its audit record",
-        "requirement_ids":  [
-                                "FR-016"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: OPS-001, AUDIT-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Perform a state change and inspect its audit record",
-                          "expected":  "Bank operations sees an audit entry with actor, action, and timestamp."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-032",
-        "title":  "AC-016.2: Simulate failure to persist the audit record for a state change",
-        "requirement_ids":  [
-                                "FR-016"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: OPS-001, AUDIT-001"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Simulate failure to persist the audit record for a state change",
-                          "expected":  "The user sees the save-failure message and the incomplete state change is not confirmed."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-033",
-        "title":  "AC-017.1: Review a business ruleâ€™s linked requirement, acceptance criterion, UAT, and evidence fields",
-        "requirement_ids":  [
-                                "FR-017"
-                            ],
-        "role":  "Reviewer",
-        "preconditions":  [
-                              "the required role and approved fixtures are available",
-                              "Approved fixtures: "
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Review a business ruleâ€™s linked requirement, acceptance criterion, UAT, and evidence fields",
-                          "expected":  "The reviewer can follow the complete linked record and sees it marked DRAFT pending human approval."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-034",
-        "title":  "AC-017.2: Attempt to approve an artifact that lacks a required traceability link or human approval",
-        "requirement_ids":  [
-                                "FR-017"
-                            ],
-        "role":  "Reviewer",
-        "preconditions":  [
-                              "the role attempts the unsupported, invalid, or unauthenticated action",
-                              "Approved fixtures: "
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Attempt to approve an artifact that lacks a required traceability link or human approval",
-                          "expected":  "The reviewer sees the governance validation failure and the artifact is not treated as approved."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-035",
-        "title":  "AC-005.3: Attempt an outward transfer that would leave the balance MIN_BALANCE - 0.01.",
-        "requirement_ids":  [
-                                "FR-005"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "an authenticated Customer has the approved MIN_BALANCE boundary fixture",
-                              "Approved fixtures: CUST-001, ACC-001, ACC-BAL-BELOW"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Attempt an outward transfer that would leave the balance MIN_BALANCE - 0.01.",
-                          "expected":  "The customer sees the minimum-balance message and no transfer is completed."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-036",
-        "title":  "AC-005.4: Attempt an outward transfer that leaves the balance exactly MIN_BALANCE.",
-        "requirement_ids":  [
-                                "FR-005"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "an authenticated Customer has the approved MIN_BALANCE boundary fixture",
-                              "Approved fixtures: CUST-001, ACC-001, ACC-BAL-BOUNDARY"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Attempt an outward transfer that leaves the balance exactly MIN_BALANCE.",
-                          "expected":  "The customer sees the transfer complete because the minimum balance is maintained."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-037",
-        "title":  "AC-005.5: Attempt an outward transfer that leaves the balance MIN_BALANCE + 0.01.",
-        "requirement_ids":  [
-                                "FR-005"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "an authenticated Customer has the approved MIN_BALANCE boundary fixture",
-                              "Approved fixtures: CUST-001, ACC-001, ACC-BAL-ABOVE"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Attempt an outward transfer that leaves the balance MIN_BALANCE + 0.01.",
-                          "expected":  "The customer sees the transfer complete and the balance remains above the minimum."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-038",
-        "title":  "AC-005.6: Submit a daily transfer total of DAILY_TRANSFER_CAP - 0.01.",
-        "requirement_ids":  [
-                                "FR-005"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "an authenticated Customer has the approved DAILY_TRANSFER_CAP boundary fixture",
-                              "Approved fixtures: CUST-001, ACC-001, TXN-UNDER-CAP"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Submit a daily transfer total of DAILY_TRANSFER_CAP - 0.01.",
-                          "expected":  "The customer sees the synthetic transfer complete."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-039",
-        "title":  "AC-005.7: Submit a daily transfer total exactly equal to DAILY_TRANSFER_CAP.",
-        "requirement_ids":  [
-                                "FR-005"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "an authenticated Customer has the approved DAILY_TRANSFER_CAP boundary fixture",
-                              "Approved fixtures: CUST-001, ACC-001, TXN-SUCCESS-BOUNDARY"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Submit a daily transfer total exactly equal to DAILY_TRANSFER_CAP.",
-                          "expected":  "The customer sees the synthetic transfer complete at the limit."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    },
-    {
-        "uat_id":  "UAT-040",
-        "title":  "AC-005.8: Submit a daily transfer total of DAILY_TRANSFER_CAP + 0.01.",
-        "requirement_ids":  [
-                                "FR-005"
-                            ],
-        "role":  "Customer",
-        "preconditions":  [
-                              "an authenticated Customer has the approved DAILY_TRANSFER_CAP boundary fixture",
-                              "Approved fixtures: CUST-001, ACC-001, TXN-OVER-CAP"
-                          ],
-        "steps":  [
-                      {
-                          "step":  1,
-                          "action":  "Submit a daily transfer total of DAILY_TRANSFER_CAP + 0.01.",
-                          "expected":  "The customer sees the daily transfer limit message and no transfer is completed."
-                      }
-                  ],
-        "actual_result":  null,
-        "status":  null,
-        "evidence_ref":  null,
-        "tester":  null,
-        "date":  null
-    }
+  {
+    "uat_id": "UAT-001",
+    "title": "Customer registration and KYC \u2014 positive",
+    "requirement_ids": [
+      "FR-001"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal customer registration and kyc journey",
+        "expected": "the user sees confirmation that customer registration and kyc completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-002",
+    "title": "Customer registration and KYC \u2014 negative",
+    "requirement_ids": [
+      "FR-001"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for customer registration and kyc"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts customer registration and kyc with that invalid condition",
+        "expected": "the user sees the applicable error message: The Aadhaar number must be exactly 12 digits. Please correct it and try again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-003",
+    "title": "Account onboarding and activation \u2014 positive",
+    "requirement_ids": [
+      "FR-002"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal account onboarding and activation journey",
+        "expected": "the user sees confirmation that account onboarding and activation completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-004",
+    "title": "Account onboarding and activation \u2014 negative",
+    "requirement_ids": [
+      "FR-002"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for account onboarding and activation"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts account onboarding and activation with that invalid condition",
+        "expected": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-005",
+    "title": "Role-based login \u2014 positive",
+    "requirement_ids": [
+      "FR-003"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal role-based login journey",
+        "expected": "the user sees confirmation that role-based login completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-006",
+    "title": "Role-based login \u2014 negative",
+    "requirement_ids": [
+      "FR-003"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for role-based login"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts role-based login with that invalid condition",
+        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-007",
+    "title": "Logout \u2014 positive",
+    "requirement_ids": [
+      "FR-004"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal logout journey",
+        "expected": "the user sees confirmation that logout completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-008",
+    "title": "Logout \u2014 negative",
+    "requirement_ids": [
+      "FR-004"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for logout"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts logout with that invalid condition",
+        "expected": "the user sees the applicable error message: We could not end your session. Please try signing out again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-009",
+    "title": "Synthetic money transfer \u2014 positive",
+    "requirement_ids": [
+      "FR-005"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal synthetic money transfer journey",
+        "expected": "the user sees confirmation that synthetic money transfer completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-010",
+    "title": "Synthetic money transfer \u2014 negative",
+    "requirement_ids": [
+      "FR-005"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for synthetic money transfer"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts synthetic money transfer with that invalid condition",
+        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-011",
+    "title": "Receive synthetic money transfer \u2014 positive",
+    "requirement_ids": [
+      "FR-006"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal receive synthetic money transfer journey",
+        "expected": "the user sees confirmation that receive synthetic money transfer completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-012",
+    "title": "Receive synthetic money transfer \u2014 negative",
+    "requirement_ids": [
+      "FR-006"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for receive synthetic money transfer"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts receive synthetic money transfer with that invalid condition",
+        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-013",
+    "title": "View account statement \u2014 positive",
+    "requirement_ids": [
+      "FR-007"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal view account statement journey",
+        "expected": "the user sees confirmation that view account statement completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-014",
+    "title": "View account statement \u2014 negative",
+    "requirement_ids": [
+      "FR-007"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for view account statement"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts view account statement with that invalid condition",
+        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-015",
+    "title": "Download account statement \u2014 positive",
+    "requirement_ids": [
+      "FR-008"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal download account statement journey",
+        "expected": "the user sees confirmation that download account statement completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-016",
+    "title": "Download account statement \u2014 negative",
+    "requirement_ids": [
+      "FR-008"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for download account statement"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts download account statement with that invalid condition",
+        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-017",
+    "title": "View audit trail \u2014 positive",
+    "requirement_ids": [
+      "FR-009"
+    ],
+    "role": "Bank operations",
+    "preconditions": [
+      "the required Bank operations fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal view audit trail journey",
+        "expected": "the user sees confirmation that view audit trail completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-018",
+    "title": "View audit trail \u2014 negative",
+    "requirement_ids": [
+      "FR-009"
+    ],
+    "role": "Bank operations",
+    "preconditions": [
+      "the user is in a state that violates a required condition for view audit trail"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts view audit trail with that invalid condition",
+        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-019",
+    "title": "Prevent Bank operations fund transfers \u2014 positive",
+    "requirement_ids": [
+      "FR-010"
+    ],
+    "role": "Bank operations",
+    "preconditions": [
+      "the required Bank operations fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal prevent bank operations fund transfers journey",
+        "expected": "the user sees confirmation that prevent bank operations fund transfers completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-020",
+    "title": "Prevent Bank operations fund transfers \u2014 negative",
+    "requirement_ids": [
+      "FR-010"
+    ],
+    "role": "Bank operations",
+    "preconditions": [
+      "the user is in a state that violates a required condition for prevent bank operations fund transfers"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts prevent bank operations fund transfers with that invalid condition",
+        "expected": "the user sees the applicable error message: You do not have permission to do this. Please contact an administrator if you believe this is a mistake."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-021",
+    "title": "Authentication for all actions \u2014 positive",
+    "requirement_ids": [
+      "FR-011"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal authentication for all actions journey",
+        "expected": "the user sees confirmation that authentication for all actions completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-022",
+    "title": "Authentication for all actions \u2014 negative",
+    "requirement_ids": [
+      "FR-011"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for authentication for all actions"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts authentication for all actions with that invalid condition",
+        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-023",
+    "title": "Sensitive data access restricted by role \u2014 positive",
+    "requirement_ids": [
+      "FR-012"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal sensitive data access restricted by role journey",
+        "expected": "the user sees confirmation that sensitive data access restricted by role completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-024",
+    "title": "Sensitive data access restricted by role \u2014 negative",
+    "requirement_ids": [
+      "FR-012"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for sensitive data access restricted by role"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts sensitive data access restricted by role with that invalid condition",
+        "expected": "the user sees the applicable error message: You do not have permission to do this. Please contact an administrator if you believe this is a mistake."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-025",
+    "title": "Accessibility \u2014 positive",
+    "requirement_ids": [
+      "FR-013"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal accessibility journey",
+        "expected": "the user sees confirmation that accessibility completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-026",
+    "title": "Accessibility \u2014 negative",
+    "requirement_ids": [
+      "FR-013"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for accessibility"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts accessibility with that invalid condition",
+        "expected": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-027",
+    "title": "Reliable persistence of state changes \u2014 positive",
+    "requirement_ids": [
+      "FR-014"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal reliable persistence of state changes journey",
+        "expected": "the user sees confirmation that reliable persistence of state changes completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-028",
+    "title": "Reliable persistence of state changes \u2014 negative",
+    "requirement_ids": [
+      "FR-014"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for reliable persistence of state changes"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts reliable persistence of state changes with that invalid condition",
+        "expected": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-029",
+    "title": "Testability \u2014 positive",
+    "requirement_ids": [
+      "FR-015"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal testability journey",
+        "expected": "the user sees confirmation that testability completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-030",
+    "title": "Testability \u2014 negative",
+    "requirement_ids": [
+      "FR-015"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for testability"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts testability with that invalid condition",
+        "expected": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-031",
+    "title": "Audit trail recording \u2014 positive",
+    "requirement_ids": [
+      "FR-016"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the required Customer fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal audit trail recording journey",
+        "expected": "the user sees confirmation that audit trail recording completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-032",
+    "title": "Audit trail recording \u2014 negative",
+    "requirement_ids": [
+      "FR-016"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "the user is in a state that violates a required condition for audit trail recording"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts audit trail recording with that invalid condition",
+        "expected": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-033",
+    "title": "Traceability and artifact governance \u2014 positive",
+    "requirement_ids": [
+      "FR-017"
+    ],
+    "role": "Bank operations",
+    "preconditions": [
+      "the required Bank operations fixture and permitted state are available"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user completes the normal traceability and artifact governance journey",
+        "expected": "the user sees confirmation that traceability and artifact governance completed and the permitted result is available"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-034",
+    "title": "Traceability and artifact governance \u2014 negative",
+    "requirement_ids": [
+      "FR-017"
+    ],
+    "role": "Bank operations",
+    "preconditions": [
+      "the user is in a state that violates a required condition for traceability and artifact governance"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the user attempts traceability and artifact governance with that invalid condition",
+        "expected": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-035",
+    "title": "Synthetic transfer below DAILY_TRANSFER_CAP boundary",
+    "requirement_ids": [
+      "FR-005"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "an authenticated Customer has fixtures ACC-001 and TXN-UNDER-CAP"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP - 0.01",
+        "expected": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-036",
+    "title": "Synthetic transfer at DAILY_TRANSFER_CAP boundary",
+    "requirement_ids": [
+      "FR-005"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "an authenticated Customer has fixtures ACC-001 and TXN-SUCCESS-BOUNDARY"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP",
+        "expected": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-037",
+    "title": "Synthetic transfer above DAILY_TRANSFER_CAP boundary",
+    "requirement_ids": [
+      "FR-005"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "an authenticated Customer has fixtures ACC-001 and TXN-OVER-CAP"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP + 0.01",
+        "expected": "the customer sees: This transfer would exceed your daily transfer limit. Please wait until your limit resets or enter a smaller amount."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-038",
+    "title": "Synthetic transfer below MIN_BALANCE boundary",
+    "requirement_ids": [
+      "FR-005"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "an authenticated Customer has fixtures ACC-001 and ACC-BAL-BELOW"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the Customer submits a synthetic transfer where the source balance is MIN_BALANCE - 0.01",
+        "expected": "the customer sees: This transfer cannot be completed because it would leave your account below the required minimum balance. Please enter a smaller amount."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-039",
+    "title": "Synthetic transfer at MIN_BALANCE boundary",
+    "requirement_ids": [
+      "FR-005"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "an authenticated Customer has fixtures ACC-001 and ACC-BAL-BOUNDARY"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the Customer submits a synthetic transfer where the resulting source balance is MIN_BALANCE",
+        "expected": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-040",
+    "title": "Synthetic transfer above MIN_BALANCE boundary",
+    "requirement_ids": [
+      "FR-005"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "an authenticated Customer has fixtures ACC-001 and ACC-BAL-ABOVE"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "the Customer submits a synthetic transfer where the resulting source balance is MIN_BALANCE + 0.01",
+        "expected": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  }
 ]

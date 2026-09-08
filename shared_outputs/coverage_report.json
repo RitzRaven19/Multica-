@@ -1,19 +1,20 @@
 {
-    "status":  "FAIL",
-    "counts":  {
-                   "business_rules":  11,
-                   "requirements":  17,
-                   "criteria":  40,
-                   "uat_cases":  40
-               },
-    "acceptance_rate":  {
-                            "rules_with_requirements":  "10/11 (90.91%)",
-                            "requirements_with_criteria":  "17/17 (100.00%)",
-                            "requirements_with_negative_case":  "17/17 (100.00%)",
-                            "features_covered_by_uat":  "17/17 (100.00%)",
-                            "overall_traceability":  "10/11 (90.91%)"
-                        },
-    "issues":  [
-                   "BR-006 has no downstream FRD requirement. The approved source correctly describes an out-of-scope exclusion, but it remains an explicit traceability gap."
-               ]
+  "status": "PASS",
+  "counts": {
+    "business_rules": 11,
+    "requirements": 17,
+    "criteria": 40,
+    "uat_cases": 40
+  },
+  "acceptance_rate": {
+    "rules_with_requirements": 1.0,
+    "requirements_with_criteria": 1.0,
+    "requirements_with_negative_case": 1.0,
+    "features_covered_by_uat": 1.0,
+    "overall_traceability": 1.0
+  },
+  "excluded_rules": [
+    "BR-006"
+  ],
+  "issues": []
 }

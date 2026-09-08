@@ -8,12 +8,11 @@ Group 2 agent instructions (brd-agent / frd-agent / uat-generator).
 
 Hard failures (exit 1): missing files, broken JSON, missing required
 fields, dangling id references, duplicate ids, requirements with no
-acceptance criteria or no UAT case.
-
-Warnings only: a business rule with no downstream FRD requirement. That
-can be a real gap or a deliberate exclusion rule (e.g. "X is out of
-scope") -- telling the two apart is a judgement call this script can't
-make, so it's surfaced for a human/agent to read, not auto-failed.
+acceptance criteria or no UAT case, and a business rule with no
+downstream FRD requirement unless it's explicitly typed "exclusion" in
+business_rules.json (e.g. "beneficiary management is out of scope for
+v1") -- the type field removes the judgement call this script used to
+have to punt on.
 """
 import csv
 import json
@@ -82,10 +81,15 @@ def main():
 
     # ---- business_rules.json ----
     br_ids = set()
+    exclusion_rule_ids = set()
     for r in br:
-        for field in ["rule_id", "statement", "rationale", "source_ids", "roles", "priority", "status"]:
+        for field in ["rule_id", "statement", "rationale", "source_ids", "roles", "priority", "status", "type"]:
             if field not in r:
                 errors.append(f"business_rules.json {r.get('rule_id','?')} missing field: {field}")
+        if r.get("type") not in ("requirement-generating", "exclusion"):
+            errors.append(f"business_rules.json {r.get('rule_id','?')} has invalid type: {r.get('type')!r}")
+        if r.get("type") == "exclusion":
+            exclusion_rule_ids.add(r.get("rule_id"))
         br_ids.add(r.get("rule_id"))
     if len(br_ids) != len(br):
         errors.append("business_rules.json has duplicate rule_id(s)")
@@ -136,14 +140,14 @@ def main():
             if re.match(r"^BR-\d+$", sid) and sid not in br_ids:
                 errors.append(f"frd.json {f['requirement_id']} source_ids references {sid} not in business_rules.json")
 
-    # business rules with no downstream FRD requirement -- warning, not error
-    # (could be a deliberate exclusion rule; a human/agent judgement call)
+    # business rules with no downstream FRD requirement: a hard error unless
+    # the rule is explicitly typed "exclusion" (e.g. "X is out of scope for v1")
     covered_source_ids = set()
     for f in frd:
         covered_source_ids.update(sid for sid in (f.get("source_ids") or []) if sid.startswith("BR-"))
-    uncovered_rules = br_ids - covered_source_ids
+    uncovered_rules = br_ids - covered_source_ids - exclusion_rule_ids
     if uncovered_rules:
-        warnings.append(f"Business rule(s) with no downstream FRD requirement (verify intentional): {sorted(uncovered_rules)}")
+        errors.append(f"Business rule(s) with no downstream FRD requirement and not typed 'exclusion': {sorted(uncovered_rules)}")
 
     # ---- data_spec.json ----
     for key in ["fields", "state_transitions", "fixtures"]:
