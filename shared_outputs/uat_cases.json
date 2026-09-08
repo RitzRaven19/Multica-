@@ -1,19 +1,19 @@
 [
   {
     "uat_id": "UAT-001",
-    "title": "Customer registration and KYC \u2014 positive",
+    "title": "Successful Customer registration with Aadhaar and PAN",
     "requirement_ids": [
       "FR-001"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The prospective customer is not yet registered and has no in-flight KYC application of the same identity."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal customer registration and kyc journey",
-        "expected": "the user sees confirmation that customer registration and kyc completed and the permitted result is available"
+        "action": "Perform customer registration with aadhaar and pan with valid data and permissions.",
+        "expected": "A registration record is created and a KYC application (Aadhaar + PAN) is submitted for review."
       }
     ],
     "actual_result": null,
@@ -24,19 +24,19 @@
   },
   {
     "uat_id": "UAT-002",
-    "title": "Customer registration and KYC \u2014 negative",
+    "title": "Rejected invalid Customer registration with Aadhaar and PAN",
     "requirement_ids": [
       "FR-001"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for customer registration and kyc"
+      "The prospective customer is not yet registered and has no in-flight KYC application of the same identity."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts customer registration and kyc with that invalid condition",
-        "expected": "the user sees the applicable error message: The Aadhaar number must be exactly 12 digits. Please correct it and try again."
+        "action": "Attempt customer registration with aadhaar and pan using the condition that produces INVALID_AADHAAR_FORMAT.",
+        "expected": "The Aadhaar number you entered is not in the expected 12-digit format. Please check the value and try again."
       }
     ],
     "actual_result": null,
@@ -47,19 +47,19 @@
   },
   {
     "uat_id": "UAT-003",
-    "title": "Account onboarding and activation \u2014 positive",
+    "title": "Successful Aadhaar and PAN format validation",
     "requirement_ids": [
       "FR-002"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The prospective customer has entered Aadhaar and PAN values during registration."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal account onboarding and activation journey",
-        "expected": "the user sees confirmation that account onboarding and activation completed and the permitted result is available"
+        "action": "Perform aadhaar and pan format validation with valid data and permissions.",
+        "expected": "Malformed values are rejected and the malformed field is reported; well-formed values are accepted for KYC submission."
       }
     ],
     "actual_result": null,
@@ -70,19 +70,19 @@
   },
   {
     "uat_id": "UAT-004",
-    "title": "Account onboarding and activation \u2014 negative",
+    "title": "Rejected invalid Aadhaar and PAN format validation",
     "requirement_ids": [
       "FR-002"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for account onboarding and activation"
+      "The prospective customer has entered Aadhaar and PAN values during registration."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts account onboarding and activation with that invalid condition",
-        "expected": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+        "action": "Attempt aadhaar and pan format validation using the condition that produces INVALID_AADHAAR_FORMAT.",
+        "expected": "The Aadhaar number you entered is not in the expected 12-digit format. Please check the value and try again."
       }
     ],
     "actual_result": null,
@@ -93,19 +93,19 @@
   },
   {
     "uat_id": "UAT-005",
-    "title": "Role-based login \u2014 positive",
+    "title": "Successful Route KYC application to Bank operations review",
     "requirement_ids": [
       "FR-003"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "A KYC application has passed format validation and is in a submitted state."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal role-based login journey",
-        "expected": "the user sees confirmation that role-based login completed and the permitted result is available"
+        "action": "Perform route kyc application to bank operations review with valid data and permissions.",
+        "expected": "The KYC application is visible to Bank operations in a pending-review state."
       }
     ],
     "actual_result": null,
@@ -116,19 +116,19 @@
   },
   {
     "uat_id": "UAT-006",
-    "title": "Role-based login \u2014 negative",
+    "title": "Rejected invalid Route KYC application to Bank operations review",
     "requirement_ids": [
       "FR-003"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the user is in a state that violates a required condition for role-based login"
+      "A KYC application has passed format validation and is in a submitted state."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts role-based login with that invalid condition",
-        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+        "action": "Attempt route kyc application to bank operations review with an invalid, unauthorized, or incomplete input/state.",
+        "expected": "The action is rejected, no unintended state change occurs, and the user is told how to correct the condition."
       }
     ],
     "actual_result": null,
@@ -139,19 +139,19 @@
   },
   {
     "uat_id": "UAT-007",
-    "title": "Logout \u2014 positive",
+    "title": "Successful Approve or reject a KYC application",
     "requirement_ids": [
       "FR-004"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The KYC application is in the pending-review state and the actor holds the Bank operations role."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal logout journey",
-        "expected": "the user sees confirmation that logout completed and the permitted result is available"
+        "action": "Perform approve or reject a kyc application with valid data and permissions.",
+        "expected": "The KYC application reaches an approved or rejected state; approval enables account creation in step FR-005."
       }
     ],
     "actual_result": null,
@@ -162,19 +162,19 @@
   },
   {
     "uat_id": "UAT-008",
-    "title": "Logout \u2014 negative",
+    "title": "Rejected invalid Approve or reject a KYC application",
     "requirement_ids": [
       "FR-004"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the user is in a state that violates a required condition for logout"
+      "The KYC application is in the pending-review state and the actor holds the Bank operations role."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts logout with that invalid condition",
-        "expected": "the user sees the applicable error message: We could not end your session. Please try signing out again."
+        "action": "Attempt approve or reject a kyc application using the condition that produces KYC_NOT_APPROVED.",
+        "expected": "Your identity (KYC) has not been approved yet, so this action is not available. Please wait for your KYC review to be completed."
       }
     ],
     "actual_result": null,
@@ -185,19 +185,19 @@
   },
   {
     "uat_id": "UAT-009",
-    "title": "Synthetic money transfer \u2014 positive",
+    "title": "Successful Create pending account on KYC approval",
     "requirement_ids": [
       "FR-005"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "A KYC application associated with the customer has been approved."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal synthetic money transfer journey",
-        "expected": "the user sees confirmation that synthetic money transfer completed and the permitted result is available"
+        "action": "Perform create pending account on kyc approval with valid data and permissions.",
+        "expected": "An account record is created in the pending state, not yet usable for transactions."
       }
     ],
     "actual_result": null,
@@ -208,19 +208,19 @@
   },
   {
     "uat_id": "UAT-010",
-    "title": "Synthetic money transfer \u2014 negative",
+    "title": "Rejected invalid Create pending account on KYC approval",
     "requirement_ids": [
       "FR-005"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for synthetic money transfer"
+      "A KYC application associated with the customer has been approved."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts synthetic money transfer with that invalid condition",
-        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+        "action": "Attempt create pending account on kyc approval with an invalid, unauthorized, or incomplete input/state.",
+        "expected": "The action is rejected, no unintended state change occurs, and the user is told how to correct the condition."
       }
     ],
     "actual_result": null,
@@ -231,19 +231,19 @@
   },
   {
     "uat_id": "UAT-011",
-    "title": "Receive synthetic money transfer \u2014 positive",
+    "title": "Successful Activate a pending account",
     "requirement_ids": [
       "FR-006"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The account is in the pending state and the actor holds the Bank operations role."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal receive synthetic money transfer journey",
-        "expected": "the user sees confirmation that receive synthetic money transfer completed and the permitted result is available"
+        "action": "Perform activate a pending account with valid data and permissions.",
+        "expected": "The account transitions to the active state and becomes usable for transactions."
       }
     ],
     "actual_result": null,
@@ -254,19 +254,19 @@
   },
   {
     "uat_id": "UAT-012",
-    "title": "Receive synthetic money transfer \u2014 negative",
+    "title": "Rejected invalid Activate a pending account",
     "requirement_ids": [
       "FR-006"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the user is in a state that violates a required condition for receive synthetic money transfer"
+      "The account is in the pending state and the actor holds the Bank operations role."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts receive synthetic money transfer with that invalid condition",
-        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+        "action": "Attempt activate a pending account using the condition that produces UNAUTHORIZED_ACTION.",
+        "expected": "You are not allowed to perform this action with your current access. Please contact support if you believe this is a mistake."
       }
     ],
     "actual_result": null,
@@ -277,19 +277,19 @@
   },
   {
     "uat_id": "UAT-013",
-    "title": "View account statement \u2014 positive",
+    "title": "Successful Freeze an active account",
     "requirement_ids": [
       "FR-007"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The account is in the active state and the actor holds the Bank operations role."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal view account statement journey",
-        "expected": "the user sees confirmation that view account statement completed and the permitted result is available"
+        "action": "Perform freeze an active account with valid data and permissions.",
+        "expected": "The account transitions to the frozen state; it no longer permits outgoing transfers."
       }
     ],
     "actual_result": null,
@@ -300,19 +300,19 @@
   },
   {
     "uat_id": "UAT-014",
-    "title": "View account statement \u2014 negative",
+    "title": "Rejected invalid Freeze an active account",
     "requirement_ids": [
       "FR-007"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the user is in a state that violates a required condition for view account statement"
+      "The account is in the active state and the actor holds the Bank operations role."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts view account statement with that invalid condition",
-        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+        "action": "Attempt freeze an active account using the condition that produces UNAUTHORIZED_ACTION.",
+        "expected": "You are not allowed to perform this action with your current access. Please contact support if you believe this is a mistake."
       }
     ],
     "actual_result": null,
@@ -323,19 +323,19 @@
   },
   {
     "uat_id": "UAT-015",
-    "title": "Download account statement \u2014 positive",
+    "title": "Successful Login with valid credentials",
     "requirement_ids": [
       "FR-008"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The user holds a valid identity and credentials for the Customer or Bank operations role."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal download account statement journey",
-        "expected": "the user sees confirmation that download account statement completed and the permitted result is available"
+        "action": "Perform login with valid credentials with valid data and permissions.",
+        "expected": "An authenticated session is established for the user."
       }
     ],
     "actual_result": null,
@@ -346,19 +346,19 @@
   },
   {
     "uat_id": "UAT-016",
-    "title": "Download account statement \u2014 negative",
+    "title": "Rejected invalid Login with valid credentials",
     "requirement_ids": [
       "FR-008"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for download account statement"
+      "The user holds a valid identity and credentials for the Customer or Bank operations role."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts download account statement with that invalid condition",
-        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+        "action": "Attempt login with valid credentials using the condition that produces AUTHENTICATION_FAILED.",
+        "expected": "Your username or password is incorrect. Please check your credentials and try again."
       }
     ],
     "actual_result": null,
@@ -369,19 +369,19 @@
   },
   {
     "uat_id": "UAT-017",
-    "title": "View audit trail \u2014 positive",
+    "title": "Successful Reject login with invalid credentials",
     "requirement_ids": [
       "FR-009"
     ],
-    "role": "Bank operations",
+    "role": "Customer",
     "preconditions": [
-      "the required Bank operations fixture and permitted state are available"
+      "A user submits a login attempt with invalid credentials."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal view audit trail journey",
-        "expected": "the user sees confirmation that view audit trail completed and the permitted result is available"
+        "action": "Perform reject login with invalid credentials with valid data and permissions.",
+        "expected": "The login attempt is rejected and no session is established."
       }
     ],
     "actual_result": null,
@@ -392,19 +392,19 @@
   },
   {
     "uat_id": "UAT-018",
-    "title": "View audit trail \u2014 negative",
+    "title": "Rejected invalid Reject login with invalid credentials",
     "requirement_ids": [
       "FR-009"
     ],
-    "role": "Bank operations",
+    "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for view audit trail"
+      "A user submits a login attempt with invalid credentials."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts view audit trail with that invalid condition",
-        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+        "action": "Attempt reject login with invalid credentials using the condition that produces AUTHENTICATION_FAILED.",
+        "expected": "Your username or password is incorrect. Please check your credentials and try again."
       }
     ],
     "actual_result": null,
@@ -415,19 +415,19 @@
   },
   {
     "uat_id": "UAT-019",
-    "title": "Prevent Bank operations fund transfers \u2014 positive",
+    "title": "Successful Logout and terminate session",
     "requirement_ids": [
       "FR-010"
     ],
-    "role": "Bank operations",
+    "role": "Customer",
     "preconditions": [
-      "the required Bank operations fixture and permitted state are available"
+      "The user holds an authenticated session."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal prevent bank operations fund transfers journey",
-        "expected": "the user sees confirmation that prevent bank operations fund transfers completed and the permitted result is available"
+        "action": "Perform logout and terminate session with valid data and permissions.",
+        "expected": "The session is terminated and protected functionality is no longer accessible."
       }
     ],
     "actual_result": null,
@@ -438,19 +438,19 @@
   },
   {
     "uat_id": "UAT-020",
-    "title": "Prevent Bank operations fund transfers \u2014 negative",
+    "title": "Rejected invalid Logout and terminate session",
     "requirement_ids": [
       "FR-010"
     ],
-    "role": "Bank operations",
+    "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for prevent bank operations fund transfers"
+      "The user holds an authenticated session."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts prevent bank operations fund transfers with that invalid condition",
-        "expected": "the user sees the applicable error message: You do not have permission to do this. Please contact an administrator if you believe this is a mistake."
+        "action": "Attempt logout and terminate session using the condition that produces SESSION_EXPIRED.",
+        "expected": "Your session has ended, either because you logged out or because it expired. Please log in again to continue."
       }
     ],
     "actual_result": null,
@@ -461,19 +461,19 @@
   },
   {
     "uat_id": "UAT-021",
-    "title": "Authentication for all actions \u2014 positive",
+    "title": "Successful Customer initiates a transfer",
     "requirement_ids": [
       "FR-011"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The Customer is authenticated, holds an active account, and specifies a transfer amount and a recipient account."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal authentication for all actions journey",
-        "expected": "the user sees confirmation that authentication for all actions completed and the permitted result is available"
+        "action": "Perform customer initiates a transfer with valid data and permissions.",
+        "expected": "A transfer is processed that debits the sender balance and credits the recipient balance, and a transaction is recorded."
       }
     ],
     "actual_result": null,
@@ -484,19 +484,19 @@
   },
   {
     "uat_id": "UAT-022",
-    "title": "Authentication for all actions \u2014 negative",
+    "title": "Rejected invalid Customer initiates a transfer",
     "requirement_ids": [
       "FR-011"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for authentication for all actions"
+      "The Customer is authenticated, holds an active account, and specifies a transfer amount and a recipient account."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts authentication for all actions with that invalid condition",
-        "expected": "the user sees the applicable error message: You are not signed in. Sign in to your account and try again."
+        "action": "Attempt customer initiates a transfer using the condition that produces UNAUTHORIZED_ACTION.",
+        "expected": "You are not allowed to perform this action with your current access. Please contact support if you believe this is a mistake."
       }
     ],
     "actual_result": null,
@@ -507,19 +507,19 @@
   },
   {
     "uat_id": "UAT-023",
-    "title": "Sensitive data access restricted by role \u2014 positive",
+    "title": "Successful Prevent Bank operations from initiating transfers",
     "requirement_ids": [
       "FR-012"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "A Bank operations user attempts to initiate a money transfer."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal sensitive data access restricted by role journey",
-        "expected": "the user sees confirmation that sensitive data access restricted by role completed and the permitted result is available"
+        "action": "Perform prevent bank operations from initiating transfers with valid data and permissions.",
+        "expected": "The attempt is denied and no transfer is created."
       }
     ],
     "actual_result": null,
@@ -530,19 +530,19 @@
   },
   {
     "uat_id": "UAT-024",
-    "title": "Sensitive data access restricted by role \u2014 negative",
+    "title": "Rejected invalid Prevent Bank operations from initiating transfers",
     "requirement_ids": [
       "FR-012"
     ],
-    "role": "Customer",
+    "role": "Bank operations",
     "preconditions": [
-      "the user is in a state that violates a required condition for sensitive data access restricted by role"
+      "A Bank operations user attempts to initiate a money transfer."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts sensitive data access restricted by role with that invalid condition",
-        "expected": "the user sees the applicable error message: You do not have permission to do this. Please contact an administrator if you believe this is a mistake."
+        "action": "Attempt prevent bank operations from initiating transfers using the condition that produces UNAUTHORIZED_ACTION.",
+        "expected": "You are not allowed to perform this action with your current access. Please contact support if you believe this is a mistake."
       }
     ],
     "actual_result": null,
@@ -553,19 +553,19 @@
   },
   {
     "uat_id": "UAT-025",
-    "title": "Accessibility \u2014 positive",
+    "title": "Successful Debit sender and credit recipient on success",
     "requirement_ids": [
       "FR-013"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "A transfer initiated by a Customer passes all validation checks."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal accessibility journey",
-        "expected": "the user sees confirmation that accessibility completed and the permitted result is available"
+        "action": "Perform debit sender and credit recipient on success with valid data and permissions.",
+        "expected": "The sender's balance is reduced by the transfer amount and the recipient's balance is increased by the same amount."
       }
     ],
     "actual_result": null,
@@ -576,19 +576,19 @@
   },
   {
     "uat_id": "UAT-026",
-    "title": "Accessibility \u2014 negative",
+    "title": "Rejected invalid Debit sender and credit recipient on success",
     "requirement_ids": [
       "FR-013"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for accessibility"
+      "A transfer initiated by a Customer passes all validation checks."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts accessibility with that invalid condition",
-        "expected": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+        "action": "Attempt debit sender and credit recipient on success using the condition that produces INSUFFICIENT_BALANCE.",
+        "expected": "The transfer amount exceeds the available balance on your account. Please enter a smaller amount and try again."
       }
     ],
     "actual_result": null,
@@ -599,19 +599,19 @@
   },
   {
     "uat_id": "UAT-027",
-    "title": "Reliable persistence of state changes \u2014 positive",
+    "title": "Successful Record a transaction for every transfer",
     "requirement_ids": [
       "FR-014"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "A transfer has been successfully processed."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal reliable persistence of state changes journey",
-        "expected": "the user sees confirmation that reliable persistence of state changes completed and the permitted result is available"
+        "action": "Perform record a transaction for every transfer with valid data and permissions.",
+        "expected": "A transaction entry exists and is visible to both the sending and receiving Customer."
       }
     ],
     "actual_result": null,
@@ -622,19 +622,19 @@
   },
   {
     "uat_id": "UAT-028",
-    "title": "Reliable persistence of state changes \u2014 negative",
+    "title": "Rejected invalid Record a transaction for every transfer",
     "requirement_ids": [
       "FR-014"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for reliable persistence of state changes"
+      "A transfer has been successfully processed."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts reliable persistence of state changes with that invalid condition",
-        "expected": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+        "action": "Attempt record a transaction for every transfer with an invalid, unauthorized, or incomplete input/state.",
+        "expected": "The action is rejected, no unintended state change occurs, and the user is told how to correct the condition."
       }
     ],
     "actual_result": null,
@@ -645,19 +645,19 @@
   },
   {
     "uat_id": "UAT-029",
-    "title": "Testability \u2014 positive",
+    "title": "Successful View an account statement",
     "requirement_ids": [
       "FR-015"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The user is authenticated and selects an account and a period they are permitted to view."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal testability journey",
-        "expected": "the user sees confirmation that testability completed and the permitted result is available"
+        "action": "Perform view an account statement with valid data and permissions.",
+        "expected": "A statement for the selected account and period is displayed."
       }
     ],
     "actual_result": null,
@@ -668,19 +668,19 @@
   },
   {
     "uat_id": "UAT-030",
-    "title": "Testability \u2014 negative",
+    "title": "Rejected invalid View an account statement",
     "requirement_ids": [
       "FR-015"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for testability"
+      "The user is authenticated and selects an account and a period they are permitted to view."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts testability with that invalid condition",
-        "expected": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+        "action": "Attempt view an account statement using the condition that produces ACCOUNT_NOT_FOUND.",
+        "expected": "The account you are looking for could not be found. Please check the account details and try again."
       }
     ],
     "actual_result": null,
@@ -691,19 +691,19 @@
   },
   {
     "uat_id": "UAT-031",
-    "title": "Audit trail recording \u2014 positive",
+    "title": "Successful Download an account statement as a file",
     "requirement_ids": [
       "FR-016"
     ],
     "role": "Customer",
     "preconditions": [
-      "the required Customer fixture and permitted state are available"
+      "The Customer is authenticated and selects their own account and a statement period."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal audit trail recording journey",
-        "expected": "the user sees confirmation that audit trail recording completed and the permitted result is available"
+        "action": "Perform download an account statement as a file with valid data and permissions.",
+        "expected": "A downloadable statement file is produced for the Customer."
       }
     ],
     "actual_result": null,
@@ -714,19 +714,19 @@
   },
   {
     "uat_id": "UAT-032",
-    "title": "Audit trail recording \u2014 negative",
+    "title": "Rejected invalid Download an account statement as a file",
     "requirement_ids": [
       "FR-016"
     ],
     "role": "Customer",
     "preconditions": [
-      "the user is in a state that violates a required condition for audit trail recording"
+      "The Customer is authenticated and selects their own account and a statement period."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts audit trail recording with that invalid condition",
-        "expected": "the user sees the applicable error message: Something went wrong while saving your changes. Please try again, and contact support if the problem continues."
+        "action": "Attempt download an account statement as a file using the condition that produces INVALID_STATEMENT_PERIOD.",
+        "expected": "The statement period you selected is not valid. Please choose a period with a start date before the end date."
       }
     ],
     "actual_result": null,
@@ -737,19 +737,19 @@
   },
   {
     "uat_id": "UAT-033",
-    "title": "Traceability and artifact governance \u2014 positive",
+    "title": "Successful Audit-trail view of account and transaction state changes",
     "requirement_ids": [
       "FR-017"
     ],
     "role": "Bank operations",
     "preconditions": [
-      "the required Bank operations fixture and permitted state are available"
+      "The actor holds the Bank operations role and is authenticated."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user completes the normal traceability and artifact governance journey",
-        "expected": "the user sees confirmation that traceability and artifact governance completed and the permitted result is available"
+        "action": "Perform audit-trail view of account and transaction state changes with valid data and permissions.",
+        "expected": "Bank operations can view the recorded state changes for accounts and transactions."
       }
     ],
     "actual_result": null,
@@ -760,19 +760,19 @@
   },
   {
     "uat_id": "UAT-034",
-    "title": "Traceability and artifact governance \u2014 negative",
+    "title": "Rejected invalid Audit-trail view of account and transaction state changes",
     "requirement_ids": [
       "FR-017"
     ],
     "role": "Bank operations",
     "preconditions": [
-      "the user is in a state that violates a required condition for traceability and artifact governance"
+      "The actor holds the Bank operations role and is authenticated."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the user attempts traceability and artifact governance with that invalid condition",
-        "expected": "the user sees the applicable error message: Something went wrong on our side. Please try again later, and contact support if the problem continues."
+        "action": "Attempt audit-trail view of account and transaction state changes using the condition that produces UNAUTHORIZED_ACTION.",
+        "expected": "You are not allowed to perform this action with your current access. Please contact support if you believe this is a mistake."
       }
     ],
     "actual_result": null,
@@ -783,19 +783,19 @@
   },
   {
     "uat_id": "UAT-035",
-    "title": "Synthetic transfer below DAILY_TRANSFER_CAP boundary",
+    "title": "Successful Baseline security controls",
     "requirement_ids": [
-      "FR-005"
+      "FR-018"
     ],
     "role": "Customer",
     "preconditions": [
-      "an authenticated Customer has fixtures ACC-001 and TXN-UNDER-CAP"
+      "KYC or account data exists in the system."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP - 0.01",
-        "expected": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+        "action": "Perform baseline security controls with valid data and permissions.",
+        "expected": "The data remains protected through encryption in transit and role-based access control."
       }
     ],
     "actual_result": null,
@@ -806,19 +806,19 @@
   },
   {
     "uat_id": "UAT-036",
-    "title": "Synthetic transfer at DAILY_TRANSFER_CAP boundary",
+    "title": "Rejected invalid Baseline security controls",
     "requirement_ids": [
-      "FR-005"
+      "FR-018"
     ],
     "role": "Customer",
     "preconditions": [
-      "an authenticated Customer has fixtures ACC-001 and TXN-SUCCESS-BOUNDARY"
+      "KYC or account data exists in the system."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP",
-        "expected": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+        "action": "Attempt baseline security controls using the condition that produces UNAUTHORIZED_ACTION.",
+        "expected": "You are not allowed to perform this action with your current access. Please contact support if you believe this is a mistake."
       }
     ],
     "actual_result": null,
@@ -829,19 +829,19 @@
   },
   {
     "uat_id": "UAT-037",
-    "title": "Synthetic transfer above DAILY_TRANSFER_CAP boundary",
+    "title": "Successful Mask Customer PII outside KYC review",
     "requirement_ids": [
-      "FR-005"
+      "FR-019"
     ],
     "role": "Customer",
     "preconditions": [
-      "an authenticated Customer has fixtures ACC-001 and TXN-OVER-CAP"
+      "Aadhaar or PAN data is rendered in a UI display or written to a log."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the Customer submits a synthetic transfer where the transfer total is DAILY_TRANSFER_CAP + 0.01",
-        "expected": "the customer sees: This transfer would exceed your daily transfer limit. Please wait until your limit resets or enter a smaller amount."
+        "action": "Perform mask customer pii outside kyc review with valid data and permissions.",
+        "expected": "PII is masked everywhere except authorized KYC review contexts."
       }
     ],
     "actual_result": null,
@@ -852,19 +852,19 @@
   },
   {
     "uat_id": "UAT-038",
-    "title": "Synthetic transfer below MIN_BALANCE boundary",
+    "title": "Rejected invalid Mask Customer PII outside KYC review",
     "requirement_ids": [
-      "FR-005"
+      "FR-019"
     ],
     "role": "Customer",
     "preconditions": [
-      "an authenticated Customer has fixtures ACC-001 and ACC-BAL-BELOW"
+      "Aadhaar or PAN data is rendered in a UI display or written to a log."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the Customer submits a synthetic transfer where the source balance is MIN_BALANCE - 0.01",
-        "expected": "the customer sees: This transfer cannot be completed because it would leave your account below the required minimum balance. Please enter a smaller amount."
+        "action": "Attempt mask customer pii outside kyc review with an invalid, unauthorized, or incomplete input/state.",
+        "expected": "The action is rejected, no unintended state change occurs, and the user is told how to correct the condition."
       }
     ],
     "actual_result": null,
@@ -875,19 +875,19 @@
   },
   {
     "uat_id": "UAT-039",
-    "title": "Synthetic transfer at MIN_BALANCE boundary",
+    "title": "Successful Baseline accessibility conformance",
     "requirement_ids": [
-      "FR-005"
+      "FR-020"
     ],
     "role": "Customer",
     "preconditions": [
-      "an authenticated Customer has fixtures ACC-001 and ACC-BAL-BOUNDARY"
+      "A customer-facing screen is rendered."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the Customer submits a synthetic transfer where the resulting source balance is MIN_BALANCE",
-        "expected": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+        "action": "Perform baseline accessibility conformance with valid data and permissions.",
+        "expected": "The screen is keyboard-navigable and its form fields are labeled."
       }
     ],
     "actual_result": null,
@@ -898,19 +898,157 @@
   },
   {
     "uat_id": "UAT-040",
-    "title": "Synthetic transfer above MIN_BALANCE boundary",
+    "title": "Rejected invalid Baseline accessibility conformance",
     "requirement_ids": [
-      "FR-005"
+      "FR-020"
     ],
     "role": "Customer",
     "preconditions": [
-      "an authenticated Customer has fixtures ACC-001 and ACC-BAL-ABOVE"
+      "A customer-facing screen is rendered."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "the Customer submits a synthetic transfer where the resulting source balance is MIN_BALANCE + 0.01",
-        "expected": "the transfer completes and the customer sees a successful synthetic transfer confirmation"
+        "action": "Attempt baseline accessibility conformance with an invalid, unauthorized, or incomplete input/state.",
+        "expected": "The action is rejected, no unintended state change occurs, and the user is told how to correct the condition."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-041",
+    "title": "Successful Log every state-changing action",
+    "requirement_ids": [
+      "FR-021"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "A state-changing action on a KYC application, account, or transaction is performed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Perform log every state-changing action with valid data and permissions.",
+        "expected": "The action is logged with actor, timestamp, and before/after state."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-042",
+    "title": "Rejected invalid Log every state-changing action",
+    "requirement_ids": [
+      "FR-021"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "A state-changing action on a KYC application, account, or transaction is performed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Attempt log every state-changing action with an invalid, unauthorized, or incomplete input/state.",
+        "expected": "The action is rejected, no unintended state change occurs, and the user is told how to correct the condition."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-043",
+    "title": "Successful Schema-valid, source-linked artifacts",
+    "requirement_ids": [
+      "FR-022"
+    ],
+    "role": "Bank operations",
+    "preconditions": [
+      "An agent-generated artifact is produced at any pipeline stage."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Perform schema-valid, source-linked artifacts with valid data and permissions.",
+        "expected": "The artifact is schema-valid and carries explicit source links."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-044",
+    "title": "Rejected invalid Schema-valid, source-linked artifacts",
+    "requirement_ids": [
+      "FR-022"
+    ],
+    "role": "Bank operations",
+    "preconditions": [
+      "An agent-generated artifact is produced at any pipeline stage."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Attempt schema-valid, source-linked artifacts with an invalid, unauthorized, or incomplete input/state.",
+        "expected": "The action is rejected, no unintended state change occurs, and the user is told how to correct the condition."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-045",
+    "title": "Successful Reliable and testable end-to-end journeys",
+    "requirement_ids": [
+      "FR-023"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "An in-scope customer journey is available in the system."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Perform reliable and testable end-to-end journeys with valid data and permissions.",
+        "expected": "The journey can be exercised end-to-end by automated tests."
+      }
+    ],
+    "actual_result": null,
+    "status": null,
+    "evidence_ref": null,
+    "tester": null,
+    "date": null
+  },
+  {
+    "uat_id": "UAT-046",
+    "title": "Rejected invalid Reliable and testable end-to-end journeys",
+    "requirement_ids": [
+      "FR-023"
+    ],
+    "role": "Customer",
+    "preconditions": [
+      "An in-scope customer journey is available in the system."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Attempt reliable and testable end-to-end journeys with an invalid, unauthorized, or incomplete input/state.",
+        "expected": "The action is rejected, no unintended state change occurs, and the user is told how to correct the condition."
       }
     ],
     "actual_result": null,

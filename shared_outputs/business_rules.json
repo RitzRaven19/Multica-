@@ -1,161 +1,200 @@
 [
   {
     "rule_id": "BR-001",
-    "statement": "Customer onboarding requires KYC using Aadhaar and PAN identity documents, validated by format only; no real government verification is performed.",
-    "rationale": "Scope agreement requires KYC for onboarding while explicitly excluding real Aadhaar/PAN verification from v1; format-only checks keep the simulation buildable without third-party integration.",
-    "source_ids": [
-      "SA-1",
-      "SA-OOS-2"
-    ],
-    "roles": [
-      "Customer",
-      "Bank operations"
-    ],
+    "statement": "A prospective customer must complete KYC by submitting Aadhaar and PAN identifiers before an account can be opened.",
+    "rationale": "v1 in-scope item 'Customer on-boarding with KYC (Aadhaar, PAN)' requires identity capture as the entry point to onboarding.",
+    "source_ids": ["SA-IS1"],
+    "roles": ["Customer", "Bank operations"],
     "priority": "Must",
     "status": "Draft",
     "type": "requirement-generating"
   },
   {
     "rule_id": "BR-002",
-    "statement": "An account must be reviewed and activated by Bank operations before it can be used for transactions.",
-    "rationale": "Scope agreement lists account onboarding and activation as a distinct in-scope step, implying a review/activation gate performed by Bank operations.",
-    "source_ids": [
-      "SA-2",
-      "SA-ROLE-OPS"
-    ],
-    "roles": [
-      "Customer",
-      "Bank operations"
-    ],
+    "statement": "Aadhaar and PAN values submitted during KYC must pass a format validation check before being accepted.",
+    "rationale": "Scope agreement states KYC verification is 'format check only, mocked', which implies a format-validation step must exist even though real verification does not.",
+    "source_ids": ["SA-OOS2"],
+    "roles": ["Customer"],
     "priority": "Must",
     "status": "Draft",
     "type": "requirement-generating"
   },
   {
     "rule_id": "BR-003",
-    "statement": "All money transfers and receipts are synthetic; no integration with real payment rails or real fund movement is performed.",
-    "rationale": "Scope agreement explicitly excludes real money movement from v1, restricting transfers to synthetic test data.",
-    "source_ids": [
-      "SA-OOS-3"
-    ],
-    "roles": [
-      "Customer"
-    ],
-    "priority": "Must",
-    "status": "Draft",
-    "type": "requirement-generating"
-  },
-  {
-    "rule_id": "BR-004",
-    "statement": "The Customer role may register, complete KYC, log in, transfer funds, and view/download statements.",
-    "rationale": "Directly reflects the Customer role definition in the scope agreement.",
-    "source_ids": [
-      "SA-ROLE-CUST"
-    ],
-    "roles": [
-      "Customer"
-    ],
-    "priority": "Must",
-    "status": "Draft",
-    "type": "requirement-generating"
-  },
-  {
-    "rule_id": "BR-005",
-    "statement": "The Bank operations role may review KYC, activate or freeze accounts, and view the audit trail, but may not initiate money transfers.",
-    "rationale": "Directly reflects the Bank operations role definition and its explicit transfer restriction in the scope agreement.",
-    "source_ids": [
-      "SA-ROLE-OPS"
-    ],
-    "roles": [
-      "Bank operations"
-    ],
-    "priority": "Must",
-    "status": "Draft",
-    "type": "requirement-generating"
-  },
-  {
-    "rule_id": "BR-006",
-    "statement": "Beneficiary management, notifications, and service requests are excluded from the v1 build.",
-    "rationale": "Explicitly listed as out of scope in the scope agreement.",
-    "source_ids": [
-      "SA-OOS-1"
-    ],
+    "statement": "Real-time verification of Aadhaar/PAN against government or issuing-authority systems is excluded from v1; verification is mocked.",
+    "rationale": "Scope agreement explicitly excludes real Aadhaar/PAN verification, limiting the system to format checks only.",
+    "source_ids": ["SA-OOS2"],
     "roles": [],
     "priority": "Must",
     "status": "Draft",
     "type": "exclusion"
   },
   {
+    "rule_id": "BR-004",
+    "statement": "A newly on-boarded account must pass through an activation step before it can be used for transactions.",
+    "rationale": "In-scope item 'Account on-boarding and activation' distinguishes account creation from activation as separate steps.",
+    "source_ids": ["SA-IS2"],
+    "roles": ["Customer", "Bank operations"],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
+    "rule_id": "BR-005",
+    "statement": "Only authenticated users may access Customer or Bank operations functionality; login with valid credentials is required.",
+    "rationale": "'Login' is a standalone in-scope item for both roles, and role-based access is a stated project objective.",
+    "source_ids": ["SA-IS3", "SA-ROLE-CUST", "SA-ROLE-BANKOPS"],
+    "roles": ["Customer", "Bank operations"],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
+    "rule_id": "BR-006",
+    "statement": "An authenticated user must be able to explicitly end their session via logout.",
+    "rationale": "'Logout' is a standalone in-scope item for both roles.",
+    "source_ids": ["SA-IS4"],
+    "roles": ["Customer", "Bank operations"],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
     "rule_id": "BR-007",
-    "statement": "All account, KYC, and transfer state changes must be recorded with actor, action, and timestamp to support the Bank operations audit trail and defect root-cause analysis.",
-    "rationale": "Bank operations' role includes viewing the audit trail, and the charter requires auditable state changes and traceable defect handling.",
-    "source_ids": [
-      "SA-ROLE-OPS",
-      "CH-OBJ-2",
-      "CH-OBJ-6"
-    ],
-    "roles": [
-      "Bank operations"
-    ],
+    "statement": "Only the Customer role may initiate a money transfer from their own account; Bank operations is explicitly barred from initiating transfers.",
+    "rationale": "In-scope item 'Money transfer' is scoped to Customer only, and the Bank operations role description states it 'cannot transfer'.",
+    "source_ids": ["SA-IS5", "SA-ROLE-BANKOPS"],
+    "roles": ["Customer", "Bank operations"],
     "priority": "Must",
     "status": "Draft",
     "type": "requirement-generating"
   },
   {
     "rule_id": "BR-008",
-    "statement": "Agent-produced SDLC artifacts must be reviewable, reproducible, schema-valid, source-linked, and subject to human approval before being treated as approved.",
-    "rationale": "Charter objective 4 sets this as a project-wide requirement for all agent output, including this BRD.",
-    "source_ids": [
-      "CH-OBJ-4"
-    ],
+    "statement": "All money movement in v1 is synthetic; no real funds are moved between real financial institutions or accounts.",
+    "rationale": "Scope agreement explicitly excludes real money movement, limiting transfers to simulated balances.",
+    "source_ids": ["SA-OOS3"],
     "roles": [],
     "priority": "Must",
     "status": "Draft",
-    "type": "requirement-generating"
+    "type": "exclusion"
   },
   {
     "rule_id": "BR-009",
-    "statement": "Login and logout must be available to both Customer and Bank operations users, with role-based access control enforced.",
-    "rationale": "Login/logout are explicitly in scope for both roles, and the charter requires role-based access as part of the journeys.",
-    "source_ids": [
-      "SA-3",
-      "SA-4",
-      "CH-OBJ-2"
-    ],
-    "roles": [
-      "Customer",
-      "Bank operations"
-    ],
+    "statement": "A Customer account must be able to receive an incoming money transfer and reflect it as a credit to the account balance.",
+    "rationale": "'Money receive' is a standalone in-scope item for the Customer role.",
+    "source_ids": ["SA-IS6"],
+    "roles": ["Customer"],
     "priority": "Must",
     "status": "Draft",
     "type": "requirement-generating"
   },
   {
     "rule_id": "BR-010",
-    "statement": "Statement view is available to Customer and Bank operations; statement download is available to Customer only, in v1.",
-    "rationale": "Scope agreement lists statement view against both roles and statement download against Customer only.",
-    "source_ids": [
-      "SA-7",
-      "SA-8",
-      "SA-ROLE-CUST",
-      "SA-ROLE-OPS"
-    ],
-    "roles": [
-      "Customer",
-      "Bank operations"
-    ],
+    "statement": "Both Customer and Bank operations roles may view an account statement.",
+    "rationale": "In-scope item 'Statement view' lists both roles as permitted viewers.",
+    "source_ids": ["SA-IS7", "SA-ROLE-CUST", "SA-ROLE-BANKOPS"],
+    "roles": ["Customer", "Bank operations"],
     "priority": "Must",
     "status": "Draft",
     "type": "requirement-generating"
   },
   {
     "rule_id": "BR-011",
-    "statement": "Security, privacy, accessibility, reliability, and testability apply as acceptance conditions to every in-scope Customer and Bank operations journey.",
-    "rationale": "Charter objective 5 states these are acceptance conditions, not optional polish, for the whole v1 build.",
-    "source_ids": [
-      "CH-OBJ-5"
-    ],
+    "statement": "The Customer role may download their account statement as a file.",
+    "rationale": "In-scope item 'Statement download' is scoped to the Customer role only.",
+    "source_ids": ["SA-IS8", "SA-ROLE-CUST"],
+    "roles": ["Customer"],
+    "priority": "Should",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
+    "rule_id": "BR-012",
+    "statement": "Bank operations must be able to review a submitted KYC application and approve or reject it.",
+    "rationale": "The Bank operations role description states it 'reviews KYC', which is required to complete the onboarding item.",
+    "source_ids": ["SA-ROLE-BANKOPS", "SA-IS1"],
+    "roles": ["Bank operations"],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
+    "rule_id": "BR-013",
+    "statement": "Bank operations must be able to activate or freeze a Customer account.",
+    "rationale": "The Bank operations role description states it 'activates/freezes accounts', supporting the account on-boarding and activation item.",
+    "source_ids": ["SA-ROLE-BANKOPS", "SA-IS2"],
+    "roles": ["Bank operations"],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
+    "rule_id": "BR-014",
+    "statement": "Bank operations must have access to an audit trail of account and transaction state changes.",
+    "rationale": "The Bank operations role description states it 'views audit trail', and the charter requires auditable state changes.",
+    "source_ids": ["SA-ROLE-BANKOPS", "CH-OBJ2"],
+    "roles": ["Bank operations"],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
+    "rule_id": "BR-015",
+    "statement": "Beneficiary management (adding, editing, or removing payees) is excluded from v1 and will not be built.",
+    "rationale": "Scope agreement lists beneficiary management under out of scope, 'not on build list'.",
+    "source_ids": ["SA-OOS1"],
     "roles": [],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "exclusion"
+  },
+  {
+    "rule_id": "BR-016",
+    "statement": "Notifications (e.g., transaction or account alerts) are excluded from v1 and will not be built.",
+    "rationale": "Scope agreement lists notifications under out of scope, 'not on build list'.",
+    "source_ids": ["SA-OOS1"],
+    "roles": [],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "exclusion"
+  },
+  {
+    "rule_id": "BR-017",
+    "statement": "Service requests (e.g., customer support ticketing) are excluded from v1 and will not be built.",
+    "rationale": "Scope agreement lists service requests under out of scope, 'not on build list'.",
+    "source_ids": ["SA-OOS1"],
+    "roles": [],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "exclusion"
+  },
+  {
+    "rule_id": "BR-018",
+    "statement": "Every state-changing action on an account or transaction must be recorded in a way that supports an auditable history.",
+    "rationale": "Charter objective requires demonstrating role-based access with 'auditable state changes'.",
+    "source_ids": ["CH-OBJ2"],
+    "roles": ["Customer", "Bank operations"],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
+    "rule_id": "BR-019",
+    "statement": "Agent-produced pipeline artifacts (BRD, designs, code, tests, defect analyses) must be reviewable, reproducible, schema-valid, and source-linked, and remain subject to human approval before being treated as approved.",
+    "rationale": "Charter objective requires agent output to be 'reviewable, reproducible, schema-valid, source-linked, and subject to human approval'.",
+    "source_ids": ["CH-OBJ4"],
+    "roles": [],
+    "priority": "Must",
+    "status": "Draft",
+    "type": "requirement-generating"
+  },
+  {
+    "rule_id": "BR-020",
+    "statement": "Security, privacy, accessibility, reliability, and testability are mandatory acceptance conditions for every in-scope feature, not optional enhancements.",
+    "rationale": "Charter objective states these qualities are acceptance conditions, not optional polish.",
+    "source_ids": ["CH-OBJ5"],
+    "roles": ["Customer", "Bank operations"],
     "priority": "Must",
     "status": "Draft",
     "type": "requirement-generating"

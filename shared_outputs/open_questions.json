@@ -2,25 +2,25 @@
   {
     "id": "OQ-001",
     "question": "Who executes UAT?",
-    "owner": "TBD",
-    "blocks": ["Acceptance sign-off / UAT execution for all in-scope journeys"]
+    "owner": "Business stakeholders (TBD)",
+    "blocks": ["UAT sign-off for all in-scope journeys", "BRD approval to Ready status"]
   },
   {
     "id": "OQ-002",
     "question": "Minimum balance?",
-    "owner": "TBD",
-    "blocks": ["Account activation and money-transfer validation rules (minimum balance enforcement) — F2, F5"]
+    "owner": "Business stakeholders (TBD)",
+    "blocks": ["F11 - initiate money transfer", "F13 - debit/credit balance on transfer"]
   },
   {
     "id": "OQ-003",
     "question": "Daily cap?",
-    "owner": "TBD",
-    "blocks": ["Money-transfer limit business rule and validation — F5"]
+    "owner": "Business stakeholders (TBD)",
+    "blocks": ["F11 - initiate money transfer", "F13 - debit/credit balance on transfer"]
   },
   {
     "id": "OQ-004",
     "question": "data-testid convention confirmed?",
-    "owner": "TBD",
-    "blocks": ["System-test/automation agent's selector strategy — NF5 (testability)"]
+    "owner": "Quality Assurance & Testing (Mandeep & Team)",
+    "blocks": ["System-test/automation agent test authoring"]
   }
 ]

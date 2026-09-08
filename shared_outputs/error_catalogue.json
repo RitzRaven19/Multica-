@@ -1,100 +1,100 @@
 [
   {
     "error_id": "ERR-001",
-    "name": "UNAUTHENTICATED_REQUEST",
-    "http_status": 401,
-    "user_message": "You are not signed in. Sign in to your account and try again.",
-    "notes": "Thrown when any Customer or Bank operations action is attempted without a valid authenticated session (FR-011)."
+    "name": "INVALID_AADHAAR_FORMAT",
+    "http_status": 422,
+    "user_message": "The Aadhaar number you entered is not in the expected 12-digit format. Please check the value and try again.",
+    "notes": "Format check only per BR-003; no external verification is performed in v1."
   },
   {
     "error_id": "ERR-002",
-    "name": "INVALID_LOGIN_CREDENTIALS",
-    "http_status": 401,
-    "user_message": "The sign-in details you entered are not correct. Please check them and try again.",
-    "notes": "Thrown during login (FR-003) when the supplied identity cannot be authenticated."
+    "name": "INVALID_PAN_FORMAT",
+    "http_status": 422,
+    "user_message": "The PAN you entered is not in the expected 10-character format (letters followed by digits ending in a letter). Please check the value and try again.",
+    "notes": "Format check only per BR-003; no external verification is performed in v1."
   },
   {
     "error_id": "ERR-003",
-    "name": "LOGOUT_FAILED",
-    "http_status": 400,
-    "user_message": "We could not end your session. Please try signing out again.",
-    "notes": "Thrown when a logout attempt (FR-004) cannot terminate the active session."
+    "name": "AUTHENTICATION_FAILED",
+    "http_status": 401,
+    "user_message": "Your username or password is incorrect. Please check your credentials and try again.",
+    "notes": "Generic message returned for both unknown user and wrong password to avoid credential probing."
   },
   {
     "error_id": "ERR-004",
-    "name": "ACCOUNT_NOT_ACTIVE",
-    "http_status": 409,
-    "user_message": "This account is not active and cannot be used right now. Please contact Bank operations for help.",
-    "notes": "Thrown when an account that is not in ACTIVE state is used for a transaction or statement action. Referenced by transaction preconditions."
+    "name": "SESSION_EXPIRED",
+    "http_status": 401,
+    "user_message": "Your session has ended, either because you logged out or because it expired. Please log in again to continue.",
+    "notes": "Returned when accessing protected functionality after logout or session expiry."
   },
   {
     "error_id": "ERR-005",
-    "name": "DESTINATION_ACCOUNT_NOT_FOUND",
-    "http_status": 404,
-    "user_message": "The account you are sending to could not be found. Check the account details and try again.",
-    "notes": "Thrown when a transfer (FR-005) names a destination account that does not exist or is not receivable."
+    "name": "UNAUTHORIZED_ACTION",
+    "http_status": 403,
+    "user_message": "You are not allowed to perform this action with your current access. Please contact support if you believe this is a mistake.",
+    "notes": "Role-based denial, e.g. Bank operations attempting to initiate a transfer (FR-012/NF1)."
   },
   {
     "error_id": "ERR-006",
-    "name": "KYC_DOCUMENT_VALIDATION_FAILED",
-    "http_status": 422,
-    "user_message": "One or more of your identity documents could not be accepted. Review your Aadhaar and PAN entries and try again.",
-    "notes": "Thrown during registration/KYC (FR-001) when Aadhaar or PAN fails format validation."
+    "name": "ACCOUNT_NOT_ACTIVE",
+    "http_status": 403,
+    "user_message": "This account is not active and cannot be used for transactions yet. Please wait until it is activated.",
+    "notes": "Transfers are only permitted from an account in the ACTIVE state."
   },
   {
     "error_id": "ERR-007",
-    "name": "INVALID_AADHAAR_FORMAT",
-    "http_status": 422,
-    "user_message": "The Aadhaar number must be exactly 12 digits. Please correct it and try again.",
-    "notes": "Thrown when the Aadhaar number is not exactly 12 numeric digits (length boundary: 11/12/13)."
+    "name": "ACCOUNT_FROZEN",
+    "http_status": 403,
+    "user_message": "This account has been frozen and cannot be used for outgoing transfers. Please contact support for more information.",
+    "notes": "Returned when an outgoing transfer targets an account in the FROZEN state."
   },
   {
     "error_id": "ERR-008",
-    "name": "INVALID_PAN_FORMAT",
+    "name": "INSUFFICIENT_BALANCE",
     "http_status": 422,
-    "user_message": "The PAN must be 10 characters: 5 letters, 4 digits, and 1 letter. Please correct it and try again.",
-    "notes": "Thrown when the PAN does not match the 5-letter+4-digit+1-letter pattern (length boundary: 9/10/11)."
+    "user_message": "The transfer amount exceeds the available balance on your account. Please enter a smaller amount and try again.",
+    "notes": "Returned when the requested amount is greater than the available balance."
   },
   {
     "error_id": "ERR-009",
-    "name": "STATE_CHANGE_PERSISTENCE_FAILED",
-    "http_status": 500,
-    "user_message": "Something went wrong while saving your changes. Please try again, and contact support if the problem continues.",
-    "notes": "Thrown when an account, KYC, or transaction state change cannot be durably persisted (FR-014, FR-016)."
+    "name": "MINIMUM_BALANCE_VIOLATION",
+    "http_status": 422,
+    "user_message": "This transfer would reduce the account balance below the required minimum. Please enter a smaller amount and try again.",
+    "notes": "Boundary triple (OQ-001): below the minimum is rejected, at the minimum is allowed, above the minimum is allowed. Threshold is an unresolved named placeholder pending OQ-001."
   },
   {
     "error_id": "ERR-010",
-    "name": "INSUFFICIENT_BALANCE_BELOW_MINIMUM",
+    "name": "DAILY_TRANSFER_CAP_EXCEEDED",
     "http_status": 422,
-    "user_message": "This transfer cannot be completed because it would leave your account below the required minimum balance. Please enter a smaller amount.",
-    "notes": "Thrown when an outward transfer would drop the account balance below MIN_BALANCE (OQ-002). Boundary: MIN_BALANCE - 0.01 rejected, MIN_BALANCE allowed."
+    "user_message": "This transfer would exceed your daily transfer limit. Please try again later or contact support.",
+    "notes": "Boundary triple (OQ-002): cumulative transfers below the cap allowed, at the cap allowed, above the cap rejected. Threshold is an unresolved named placeholder pending OQ-002."
   },
   {
     "error_id": "ERR-011",
-    "name": "DAILY_TRANSFER_CAP_EXCEEDED",
-    "http_status": 422,
-    "user_message": "This transfer would exceed your daily transfer limit. Please wait until your limit resets or enter a smaller amount.",
-    "notes": "Thrown when the day's total plus the new transfer exceeds DAILY_TRANSFER_CAP (OQ-003). Boundary: cap + 0.01 rejected, cap allowed."
+    "name": "ACCOUNT_NOT_FOUND",
+    "http_status": 404,
+    "user_message": "The account you are looking for could not be found. Please check the account details and try again.",
+    "notes": "Returned when a transfer or statement targets an account id that does not exist or is not visible to the caller."
   },
   {
     "error_id": "ERR-012",
-    "name": "INVALID_TRANSFER_AMOUNT",
+    "name": "INVALID_TRANSFER_TARGET",
     "http_status": 422,
-    "user_message": "The transfer amount must be a positive amount. Please enter an amount greater than zero.",
-    "notes": "Thrown when a transfer amount is zero or negative, or has more than 2 decimal places."
+    "user_message": "The recipient account you entered is not valid for this transfer. Please check the details and try again.",
+    "notes": "Returned when the destination account is not a valid receiving account for a transfer."
   },
   {
     "error_id": "ERR-013",
-    "name": "PERMISSION_DENIED",
-    "http_status": 403,
-    "user_message": "You do not have permission to do this. Please contact an administrator if you believe this is a mistake.",
-    "notes": "Thrown when a role attempts an action outside its permission set, e.g. Bank operations initiating a transfer (FR-010) or accessing data not permitted by role (FR-012)."
+    "name": "INVALID_STATEMENT_PERIOD",
+    "http_status": 422,
+    "user_message": "The statement period you selected is not valid. Please choose a period with a start date before the end date.",
+    "notes": "Returned when the period start is not before the period end for a statement view or download."
   },
   {
     "error_id": "ERR-014",
-    "name": "INTERNAL_SYSTEM_ERROR",
-    "http_status": 500,
-    "user_message": "Something went wrong on our side. Please try again later, and contact support if the problem continues.",
-    "notes": "Generic fallback error; also used where accessibility/testability acceptance conditions are not met (FR-013, FR-015, FR-017)."
+    "name": "KYC_NOT_APPROVED",
+    "http_status": 403,
+    "user_message": "Your identity (KYC) has not been approved yet, so this action is not available. Please wait for your KYC review to be completed.",
+    "notes": "Returned when an action depends on an approved KYC record that is not yet approved."
   }
 ]

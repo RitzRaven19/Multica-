@@ -1,10 +1,10 @@
 {
   "status": "PASS",
   "counts": {
-    "business_rules": 11,
-    "requirements": 17,
-    "criteria": 40,
-    "uat_cases": 40
+    "business_rules": 20,
+    "requirements": 23,
+    "criteria": 52,
+    "uat_cases": 46
   },
   "acceptance_rate": {
     "rules_with_requirements": 1.0,
@@ -14,7 +14,11 @@
     "overall_traceability": 1.0
   },
   "excluded_rules": [
-    "BR-006"
+    "BR-003",
+    "BR-008",
+    "BR-015",
+    "BR-016",
+    "BR-017"
   ],
   "issues": []
 }
