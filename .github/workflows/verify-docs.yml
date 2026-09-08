@@ -1,0 +1,78 @@
+name: Verify SDLC documents
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/BRD.md"
+      - "docs/FRD.md"
+      - "docs/UAT.md"
+      - "scripts/verify_docs.py"
+  pull_request:
+    paths:
+      - "docs/BRD.md"
+      - "docs/FRD.md"
+      - "docs/UAT.md"
+      - "scripts/verify_docs.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run traceability checks
+        id: verify
+        run: |
+          python3 scripts/verify_docs.py | tee verify_output.txt
+        continue-on-error: true
+
+      - name: Record result
+        run: |
+          if grep -q "^FAIL" verify_output.txt; then
+            echo "failed=true" >> "$GITHUB_ENV"
+          else
+            echo "failed=false" >> "$GITHUB_ENV"
+          fi
+
+      - name: Open issue on failure
+        if: env.failed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('verify_output.txt', 'utf8');
+            const title = 'Document verification failed — ' + context.sha.slice(0, 7);
+            const { data: existing } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'doc-verification',
+            });
+            const openMatch = existing.find(i => i.title.startsWith('Document verification failed'));
+            const issueBody = "Automated traceability check failed on `" + context.sha + "`.\n\n```\n" + body + "\n```\n\nSee `scripts/verify_docs.py` and the failing run: " + context.serverUrl + "/" + context.repo.owner + "/" + context.repo.repo + "/actions/runs/" + context.runId;
+            if (openMatch) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: openMatch.number,
+                body: issueBody,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body: issueBody,
+                labels: ['doc-verification'],
+              });
+            }
+
+      - name: Fail the job if verification failed
+        if: env.failed == 'true'
+        run: exit 1
