@@ -1,0 +1,544 @@
+{
+  "fields": [
+    {
+      "entity": "Customer",
+      "name": "customer_id",
+      "type": "string",
+      "format": "CUST-XXX",
+      "length": 8,
+      "example": "CUST-001"
+    },
+    {
+      "entity": "Customer",
+      "name": "full_name",
+      "type": "string",
+      "format": "free text",
+      "length": 100,
+      "example": "Asha Rathi"
+    },
+    {
+      "entity": "Customer",
+      "name": "phone",
+      "type": "string",
+      "format": "10-digit number",
+      "length": 10,
+      "example": "9876543210"
+    },
+    {
+      "entity": "Customer",
+      "name": "email",
+      "type": "string",
+      "format": "email",
+      "length": 255,
+      "example": "asha.rathi@example.com"
+    },
+    {
+      "entity": "KYC Record",
+      "name": "kyc_id",
+      "type": "string",
+      "format": "KYC-XXX",
+      "length": 9,
+      "example": "KYC-001"
+    },
+    {
+      "entity": "KYC Record",
+      "name": "customer_id",
+      "type": "string",
+      "format": "CUST-XXX",
+      "length": 8,
+      "example": "CUST-001"
+    },
+    {
+      "entity": "KYC Record",
+      "name": "aadhaar_number",
+      "type": "string",
+      "format": "12 numeric digits",
+      "length": 12,
+      "example": "123456789012"
+    },
+    {
+      "entity": "KYC Record",
+      "name": "pan_number",
+      "type": "string",
+      "format": "5 letters + 4 digits + 1 letter",
+      "length": 10,
+      "example": "ABCDE1234F"
+    },
+    {
+      "entity": "KYC Record",
+      "name": "status",
+      "type": "string",
+      "format": "enum",
+      "length": null,
+      "example": "PENDING"
+    },
+    {
+      "entity": "Account",
+      "name": "account_id",
+      "type": "string",
+      "format": "ACC-XXX",
+      "length": 9,
+      "example": "ACC-001"
+    },
+    {
+      "entity": "Account",
+      "name": "customer_id",
+      "type": "string",
+      "format": "CUST-XXX",
+      "length": 8,
+      "example": "CUST-001"
+    },
+    {
+      "entity": "Account",
+      "name": "status",
+      "type": "string",
+      "format": "enum",
+      "length": null,
+      "example": "ACTIVE"
+    },
+    {
+      "entity": "Account",
+      "name": "balance",
+      "type": "decimal",
+      "format": "2 decimal places",
+      "length": null,
+      "example": "50000.00"
+    },
+    {
+      "entity": "Account",
+      "name": "opened_at",
+      "type": "datetime",
+      "format": "ISO 8601 UTC",
+      "length": null,
+      "example": "2026-09-08T09:00:00Z"
+    },
+    {
+      "entity": "Transaction",
+      "name": "transaction_id",
+      "type": "string",
+      "format": "TXN-XXX",
+      "length": 10,
+      "example": "TXN-001"
+    },
+    {
+      "entity": "Transaction",
+      "name": "from_account_id",
+      "type": "string",
+      "format": "ACC-XXX",
+      "length": 9,
+      "example": "ACC-001"
+    },
+    {
+      "entity": "Transaction",
+      "name": "to_account_id",
+      "type": "string",
+      "format": "ACC-XXX",
+      "length": 9,
+      "example": "ACC-002"
+    },
+    {
+      "entity": "Transaction",
+      "name": "amount",
+      "type": "decimal",
+      "format": "2 decimal places",
+      "length": null,
+      "example": "1000.00"
+    },
+    {
+      "entity": "Transaction",
+      "name": "status",
+      "type": "string",
+      "format": "enum",
+      "length": null,
+      "example": "SUCCESS"
+    },
+    {
+      "entity": "Transaction",
+      "name": "initiated_at",
+      "type": "datetime",
+      "format": "ISO 8601 UTC",
+      "length": null,
+      "example": "2026-09-08T09:30:00Z"
+    },
+    {
+      "entity": "Session",
+      "name": "session_id",
+      "type": "string",
+      "format": "SESSION-XXX",
+      "length": 14,
+      "example": "SESSION-001"
+    },
+    {
+      "entity": "Session",
+      "name": "user_id",
+      "type": "string",
+      "format": "CUST-XXX or OPS-XXX",
+      "length": 8,
+      "example": "CUST-001"
+    },
+    {
+      "entity": "Session",
+      "name": "role",
+      "type": "string",
+      "format": "enum",
+      "length": null,
+      "example": "Customer"
+    },
+    {
+      "entity": "Session",
+      "name": "status",
+      "type": "string",
+      "format": "enum",
+      "length": null,
+      "example": "ACTIVE"
+    },
+    {
+      "entity": "Statement",
+      "name": "statement_id",
+      "type": "string",
+      "format": "STMT-XXX",
+      "length": 11,
+      "example": "STMT-001"
+    },
+    {
+      "entity": "Statement",
+      "name": "account_id",
+      "type": "string",
+      "format": "ACC-XXX",
+      "length": 9,
+      "example": "ACC-001"
+    },
+    {
+      "entity": "Statement",
+      "name": "period_start",
+      "type": "date",
+      "format": "YYYY-MM-DD",
+      "length": null,
+      "example": "2026-08-01"
+    },
+    {
+      "entity": "Statement",
+      "name": "period_end",
+      "type": "date",
+      "format": "YYYY-MM-DD",
+      "length": null,
+      "example": "2026-08-31"
+    },
+    {
+      "entity": "Audit Entry",
+      "name": "audit_id",
+      "type": "string",
+      "format": "AUDIT-XXX",
+      "length": 11,
+      "example": "AUDIT-001"
+    },
+    {
+      "entity": "Audit Entry",
+      "name": "entity_type",
+      "type": "string",
+      "format": "enum",
+      "length": null,
+      "example": "Account"
+    },
+    {
+      "entity": "Audit Entry",
+      "name": "entity_id",
+      "type": "string",
+      "format": "entity-specific id",
+      "length": null,
+      "example": "ACC-001"
+    },
+    {
+      "entity": "Audit Entry",
+      "name": "actor",
+      "type": "string",
+      "format": "user id",
+      "length": 8,
+      "example": "OPS-001"
+    },
+    {
+      "entity": "Audit Entry",
+      "name": "action",
+      "type": "string",
+      "format": "enum",
+      "length": null,
+      "example": "ACTIVATE_ACCOUNT"
+    },
+    {
+      "entity": "Audit Entry",
+      "name": "timestamp",
+      "type": "datetime",
+      "format": "ISO 8601 UTC",
+      "length": null,
+      "example": "2026-09-08T09:00:01Z"
+    }
+  ],
+  "state_transitions": {
+    "Account": {
+      "valid_states": ["PENDING", "ACTIVE", "FROZEN", "CLOSED"],
+      "transitions": [
+        { "from": "PENDING", "to": "ACTIVE", "trigger": "Bank operations review & activation", "actor": "Bank operations" },
+        { "from": "PENDING", "to": "CLOSED", "trigger": "Bank operations rejection", "actor": "Bank operations" },
+        { "from": "ACTIVE", "to": "FROZEN", "trigger": "Bank operations freeze", "actor": "Bank operations" },
+        { "from": "FROZEN", "to": "ACTIVE", "trigger": "Bank operations un-freeze", "actor": "Bank operations" }
+      ]
+    },
+    "Transaction": {
+      "valid_states": ["PENDING", "SUCCESS", "FAILED"],
+      "transitions": [
+        { "from": "PENDING", "to": "SUCCESS", "trigger": "Transfer validated and settled (limits satisfied and funds available)", "actor": "system" },
+        { "from": "PENDING", "to": "FAILED", "trigger": "Validation failure (insufficient balance, over daily cap, or invalid destination)", "actor": "system" }
+      ]
+    },
+    "KYC Record": {
+      "valid_states": ["PENDING", "VERIFIED", "REJECTED"],
+      "transitions": [
+        { "from": "PENDING", "to": "VERIFIED", "trigger": "Bank operations KYC review passes", "actor": "Bank operations" },
+        { "from": "PENDING", "to": "REJECTED", "trigger": "Bank operations KYC review rejects", "actor": "Bank operations" }
+      ]
+    },
+    "Session": {
+      "valid_states": ["ACTIVE", "EXPIRED", "TERMINATED"],
+      "transitions": [
+        { "from": "ACTIVE", "to": "TERMINATED", "trigger": "User logs out", "actor": "system" },
+        { "from": "ACTIVE", "to": "EXPIRED", "trigger": "Session timeout", "actor": "system" }
+      ]
+    },
+    "Customer": {
+      "valid_states": ["REGISTERED"],
+      "transitions": []
+    }
+  },
+  "limit_placeholders": [
+    {
+      "name": "MIN_BALANCE",
+      "open_question_id": "OQ-002",
+      "unit": "currency",
+      "description": "Minimum balance that must be maintained in an account. Value unresolved pending OQ-002.",
+      "boundary_values": {
+        "below": "MIN_BALANCE - 0.01",
+        "at": "MIN_BALANCE",
+        "above": "MIN_BALANCE + 0.01"
+      },
+      "error_id": "ERR-010"
+    },
+    {
+      "name": "DAILY_TRANSFER_CAP",
+      "open_question_id": "OQ-003",
+      "unit": "currency",
+      "description": "Maximum total amount a Customer may transfer in a single calendar day. Value unresolved pending OQ-003.",
+      "boundary_values": {
+        "below": "DAILY_TRANSFER_CAP - 0.01",
+        "at": "DAILY_TRANSFER_CAP",
+        "above": "DAILY_TRANSFER_CAP + 0.01"
+      },
+      "error_id": "ERR-011"
+    }
+  ],
+  "fixtures": [
+    {
+      "fixture_id": "CUST-001",
+      "entity": "Customer",
+      "fields": {
+        "customer_id": "CUST-001",
+        "full_name": "Asha Rathi",
+        "phone": "9876543210",
+        "email": "asha.rathi@example.com"
+      }
+    },
+    {
+      "fixture_id": "CUST-002",
+      "entity": "Customer",
+      "fields": {
+        "customer_id": "CUST-002",
+        "full_name": "Vikram Singh",
+        "phone": "9876543211",
+        "email": "vikram.singh@example.com"
+      }
+    },
+    {
+      "fixture_id": "OPS-001",
+      "entity": "Customer",
+      "fields": {
+        "customer_id": "OPS-001",
+        "full_name": "Bank Ops User",
+        "role": "Bank operations"
+      },
+      "notes": "Internal Bank operations role used for KYC review, account activation/freeze, and audit trail viewing."
+    },
+    {
+      "fixture_id": "KYC-001",
+      "entity": "KYC Record",
+      "fields": {
+        "kyc_id": "KYC-001",
+        "customer_id": "CUST-001",
+        "aadhaar_number": "123456789012",
+        "pan_number": "ABCDE1234F",
+        "status": "VERIFIED"
+      }
+    },
+    {
+      "fixture_id": "KYC-002",
+      "entity": "KYC Record",
+      "fields": {
+        "kyc_id": "KYC-002",
+        "customer_id": "CUST-002",
+        "aadhaar_number": "234567890123",
+        "pan_number": "FGHIJ2345G",
+        "status": "PENDING"
+      }
+    },
+    {
+      "fixture_id": "ACC-001",
+      "entity": "Account",
+      "fields": {
+        "account_id": "ACC-001",
+        "customer_id": "CUST-001",
+        "status": "ACTIVE",
+        "balance": 50000.0,
+        "opened_at": "2026-09-01T09:00:00Z"
+      }
+    },
+    {
+      "fixture_id": "ACC-002",
+      "entity": "Account",
+      "fields": {
+        "account_id": "ACC-002",
+        "customer_id": "CUST-002",
+        "status": "PENDING",
+        "balance": 0.0,
+        "opened_at": "2026-09-08T08:00:00Z"
+      }
+    },
+    {
+      "fixture_id": "ACC-003",
+      "entity": "Account",
+      "fields": {
+        "account_id": "ACC-003",
+        "customer_id": "CUST-002",
+        "status": "FROZEN",
+        "balance": 25000.0,
+        "opened_at": "2026-09-02T10:00:00Z"
+      }
+    },
+    {
+      "fixture_id": "TXN-001",
+      "entity": "Transaction",
+      "fields": {
+        "transaction_id": "TXN-001",
+        "from_account_id": "ACC-001",
+        "to_account_id": "ACC-002",
+        "amount": 1000.0,
+        "status": "SUCCESS",
+        "initiated_at": "2026-09-08T09:30:00Z"
+      }
+    },
+    {
+      "fixture_id": "TXN-SUCCESS-BOUNDARY",
+      "entity": "Transaction",
+      "fields": {
+        "transaction_id": "TXN-AT-CAP",
+        "from_account_id": "ACC-001",
+        "to_account_id": "ACC-002",
+        "amount": "DAILY_TRANSFER_CAP",
+        "status": "SUCCESS",
+        "initiated_at": "2026-09-08T09:40:00Z"
+      },
+      "notes": "Boundary-at fixture: transfer amount equal to DAILY_TRANSFER_CAP (pending OQ-003) must succeed."
+    },
+    {
+      "fixture_id": "TXN-OVER-CAP",
+      "entity": "Transaction",
+      "fields": {
+        "transaction_id": "TXN-OVER-CAP",
+        "from_account_id": "ACC-001",
+        "to_account_id": "ACC-002",
+        "amount": "DAILY_TRANSFER_CAP + 0.01",
+        "status": "FAILED",
+        "initiated_at": "2026-09-08T09:45:00Z"
+      },
+      "notes": "Boundary-over fixture: transfer amount exceeding DAILY_TRANSFER_CAP must fail with ERR-011."
+    },
+    {
+      "fixture_id": "TXN-UNDER-CAP",
+      "entity": "Transaction",
+      "fields": {
+        "transaction_id": "TXN-UNDER-CAP",
+        "from_account_id": "ACC-001",
+        "to_account_id": "ACC-002",
+        "amount": "DAILY_TRANSFER_CAP - 0.01",
+        "status": "SUCCESS",
+        "initiated_at": "2026-09-08T09:50:00Z"
+      },
+      "notes": "Boundary-below fixture: transfer amount just under DAILY_TRANSFER_CAP must succeed."
+    },
+    {
+      "fixture_id": "ACC-BAL-BOUNDARY",
+      "entity": "Account",
+      "fields": {
+        "account_id": "ACC-BAL-1",
+        "customer_id": "CUST-002",
+        "status": "ACTIVE",
+        "balance": "MIN_BALANCE",
+        "opened_at": "2026-09-08T11:00:00Z"
+      },
+      "notes": "Boundary-at fixture: account balance equal to MIN_BALANCE (pending OQ-002). Further debit must be rejected with ERR-010."
+    },
+    {
+      "fixture_id": "ACC-BAL-BELOW",
+      "entity": "Account",
+      "fields": {
+        "account_id": "ACC-BAL-2",
+        "customer_id": "CUST-002",
+        "status": "ACTIVE",
+        "balance": "MIN_BALANCE - 0.01",
+        "opened_at": "2026-09-08T11:05:00Z"
+      },
+      "notes": "Boundary-below fixture: account balance just under MIN_BALANCE; any outward transfer must be rejected with ERR-010."
+    },
+    {
+      "fixture_id": "ACC-BAL-ABOVE",
+      "entity": "Account",
+      "fields": {
+        "account_id": "ACC-BAL-3",
+        "customer_id": "CUST-002",
+        "status": "ACTIVE",
+        "balance": "MIN_BALANCE + 0.01",
+        "opened_at": "2026-09-08T11:10:00Z"
+      },
+      "notes": "Boundary-above fixture: account balance just over MIN_BALANCE; a transfer preserving the balance above the limit must succeed."
+    },
+    {
+      "fixture_id": "SESSION-001",
+      "entity": "Session",
+      "fields": {
+        "session_id": "SESSION-001",
+        "user_id": "CUST-001",
+        "role": "Customer",
+        "status": "ACTIVE"
+      }
+    },
+    {
+      "fixture_id": "STMT-001",
+      "entity": "Statement",
+      "fields": {
+        "statement_id": "STMT-001",
+        "account_id": "ACC-001",
+        "period_start": "2026-08-01",
+        "period_end": "2026-08-31"
+      }
+    },
+    {
+      "fixture_id": "AUDIT-001",
+      "entity": "Audit Entry",
+      "fields": {
+        "audit_id": "AUDIT-001",
+        "entity_type": "Account",
+        "entity_id": "ACC-001",
+        "actor": "OPS-001",
+        "action": "ACTIVATE_ACCOUNT",
+        "timestamp": "2026-09-08T09:00:01Z"
+      }
+    }
+  ]
+}

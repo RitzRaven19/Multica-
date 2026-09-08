@@ -1,0 +1,169 @@
+{
+  "document": "Business Requirements Document — Online Banking Simulation v1",
+  "version": "0.1.0-DRAFT",
+  "objectives": [
+    "Deliver a coherent banking simulation using synthetic identities, accounts, balances, beneficiaries, and payments.",
+    "Demonstrate customer and bank-operations' journeys with role-based access and auditable state changes.",
+    "Build four agent families: BRD; technical design/coding/unit testing; system-test/automation; and defect root-cause analysis.",
+    "Make agent output reviewable, reproducible, schema-valid, source-linked, and subject to human approval.",
+    "Use security, privacy, accessibility, reliability, and testability as acceptance conditions — not optional polish.",
+    "Practice governance: baselines, versioning, change control, traceability, evidence, risk management, and retrospectives.",
+    "Leverage AI agents to perform tasks and drive results, with human validation of agent-produced results."
+  ],
+  "stakeholders": [
+    "Business Analysis — Ritu & Team",
+    "Architecture & Build/Unit Test (Development) — Mohit & Team",
+    "Quality Assurance & Testing — Mandeep & Team",
+    "Defect Root-Cause Analysis — Adiba & Team",
+    "Customer (end user of the banking simulation)",
+    "Bank operations (end user / internal staff role)"
+  ],
+  "roles": [
+    {
+      "name": "Customer",
+      "description": "Registers, completes KYC, logs in, transfers funds, and views/downloads statements."
+    },
+    {
+      "name": "Bank operations",
+      "description": "Reviews KYC, activates/freezes accounts, views the audit trail; cannot transfer funds."
+    }
+  ],
+  "in_scope": [
+    "Customer on-boarding with KYC (Aadhaar, PAN) — Customer, Bank operations",
+    "Account on-boarding and activation — Customer, Bank operations",
+    "Login — Customer, Bank operations",
+    "Logout — Customer, Bank operations",
+    "Money transfer — Customer",
+    "Money receive — Customer",
+    "Statement view — Customer, Bank operations",
+    "Statement download — Customer"
+  ],
+  "out_of_scope": [
+    {
+      "item": "Beneficiary management, notifications, service requests",
+      "reason": "Not on build list for v1"
+    },
+    {
+      "item": "Real Aadhaar/PAN verification",
+      "reason": "Format check only; verification is mocked"
+    },
+    {
+      "item": "Real money movement",
+      "reason": "Synthetic only"
+    }
+  ],
+  "assumptions": [
+    "All identities, accounts, balances, and transactions are synthetic/test data; no real customer PII or real financial rails are involved.",
+    "KYC document checks (Aadhaar, PAN) validate format only and do not call external government verification services.",
+    "Values for minimum balance and daily transfer cap are not yet defined (see OQ-002, OQ-003) and are excluded from this BRD's requirements until resolved.",
+    "The UAT-executing party is not yet defined (OQ-001); acceptance testing is assumed to occur but the responsible party is pending confirmation.",
+    "The data-testid selector convention for test automation is not yet confirmed (OQ-004) and is assumed to be settled before detailed system-test design begins."
+  ],
+  "open_question_ids": ["OQ-001", "OQ-002", "OQ-003", "OQ-004"],
+  "requirements_functional": [
+    {
+      "id": "F1",
+      "statement": "The system shall allow a Customer to register and complete KYC using Aadhaar and PAN identity documents, with format validation only (mocked verification).",
+      "priority": "Must",
+      "source_ids": ["SA-1", "BR-001"]
+    },
+    {
+      "id": "F2",
+      "statement": "The system shall allow a Customer to onboard an account, and shall allow Bank operations to review and activate it before the account can be used.",
+      "priority": "Must",
+      "source_ids": ["SA-2", "BR-002", "SA-ROLE-OPS"]
+    },
+    {
+      "id": "F3",
+      "statement": "The system shall allow Customer and Bank operations users to log in, with role-based access control applied.",
+      "priority": "Must",
+      "source_ids": ["SA-3", "BR-009"]
+    },
+    {
+      "id": "F4",
+      "statement": "The system shall allow Customer and Bank operations users to log out, terminating their authenticated session.",
+      "priority": "Must",
+      "source_ids": ["SA-4", "BR-009"]
+    },
+    {
+      "id": "F5",
+      "statement": "The system shall allow a Customer to initiate a synthetic money transfer to another account.",
+      "priority": "Must",
+      "source_ids": ["SA-5", "BR-003", "BR-004"]
+    },
+    {
+      "id": "F6",
+      "statement": "The system shall allow a Customer's account to receive a synthetic money transfer.",
+      "priority": "Must",
+      "source_ids": ["SA-6", "BR-003"]
+    },
+    {
+      "id": "F7",
+      "statement": "The system shall allow Customer and Bank operations users to view account statements according to their role permissions.",
+      "priority": "Must",
+      "source_ids": ["SA-7", "BR-010"]
+    },
+    {
+      "id": "F8",
+      "statement": "The system shall allow a Customer to download their account statement.",
+      "priority": "Must",
+      "source_ids": ["SA-8", "BR-010", "SA-ROLE-CUST"]
+    },
+    {
+      "id": "F9",
+      "statement": "The system shall allow Bank operations to view the audit trail of account and KYC state changes.",
+      "priority": "Must",
+      "source_ids": ["SA-ROLE-OPS", "BR-007"]
+    },
+    {
+      "id": "F10",
+      "statement": "The system shall prevent Bank operations users from initiating money transfers.",
+      "priority": "Must",
+      "source_ids": ["SA-ROLE-OPS", "BR-005"]
+    }
+  ],
+  "requirements_nonfunctional": [
+    {
+      "id": "NF1",
+      "statement": "The system shall require authentication for every Customer and Bank operations action, protecting account and identity data appropriate to a banking simulation.",
+      "priority": "Must",
+      "source_ids": ["BR-011", "CH-OBJ-5", "BR-009"]
+    },
+    {
+      "id": "NF2",
+      "statement": "The system shall treat KYC and account data as sensitive and restrict access to it by role.",
+      "priority": "Must",
+      "source_ids": ["BR-011", "SA-ROLE-OPS"]
+    },
+    {
+      "id": "NF3",
+      "statement": "Customer- and Bank-operations-facing interfaces shall meet accessibility requirements as an acceptance condition.",
+      "priority": "Must",
+      "source_ids": ["BR-011", "CH-OBJ-5"]
+    },
+    {
+      "id": "NF4",
+      "statement": "The system shall reliably persist account, KYC, and transaction state changes without data loss.",
+      "priority": "Must",
+      "source_ids": ["BR-011", "CH-OBJ-5"]
+    },
+    {
+      "id": "NF5",
+      "statement": "The system shall be built to be testable, including deterministic synthetic data and stable UI selectors for test automation.",
+      "priority": "Must",
+      "source_ids": ["BR-011", "OQ-004"]
+    },
+    {
+      "id": "NF6",
+      "statement": "All account, KYC, and transfer state changes shall be recorded with actor, action, and timestamp to support audit-trail viewing and defect root-cause analysis.",
+      "priority": "Must",
+      "source_ids": ["CH-OBJ-2", "CH-OBJ-6", "BR-007"]
+    },
+    {
+      "id": "NF7",
+      "statement": "Every approved business rule shall be traceable through requirement, design, implementation, test, and evidence record, and all agent-produced artifacts shall be reviewable, reproducible, schema-valid, source-linked, and subject to human approval.",
+      "priority": "Must",
+      "source_ids": ["CH-PROB-2", "CH-OBJ-4", "CH-OBJ-6", "BR-008"]
+    }
+  ]
+}

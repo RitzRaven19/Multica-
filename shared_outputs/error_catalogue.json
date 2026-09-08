@@ -1,0 +1,100 @@
+[
+  {
+    "error_id": "ERR-001",
+    "name": "UNAUTHENTICATED_REQUEST",
+    "http_status": 401,
+    "user_message": "You are not signed in. Sign in to your account and try again.",
+    "notes": "Thrown when any Customer or Bank operations action is attempted without a valid authenticated session (FR-011)."
+  },
+  {
+    "error_id": "ERR-002",
+    "name": "INVALID_LOGIN_CREDENTIALS",
+    "http_status": 401,
+    "user_message": "The sign-in details you entered are not correct. Please check them and try again.",
+    "notes": "Thrown during login (FR-003) when the supplied identity cannot be authenticated."
+  },
+  {
+    "error_id": "ERR-003",
+    "name": "LOGOUT_FAILED",
+    "http_status": 400,
+    "user_message": "We could not end your session. Please try signing out again.",
+    "notes": "Thrown when a logout attempt (FR-004) cannot terminate the active session."
+  },
+  {
+    "error_id": "ERR-004",
+    "name": "ACCOUNT_NOT_ACTIVE",
+    "http_status": 409,
+    "user_message": "This account is not active and cannot be used right now. Please contact Bank operations for help.",
+    "notes": "Thrown when an account that is not in ACTIVE state is used for a transaction or statement action. Referenced by transaction preconditions."
+  },
+  {
+    "error_id": "ERR-005",
+    "name": "DESTINATION_ACCOUNT_NOT_FOUND",
+    "http_status": 404,
+    "user_message": "The account you are sending to could not be found. Check the account details and try again.",
+    "notes": "Thrown when a transfer (FR-005) names a destination account that does not exist or is not receivable."
+  },
+  {
+    "error_id": "ERR-006",
+    "name": "KYC_DOCUMENT_VALIDATION_FAILED",
+    "http_status": 422,
+    "user_message": "One or more of your identity documents could not be accepted. Review your Aadhaar and PAN entries and try again.",
+    "notes": "Thrown during registration/KYC (FR-001) when Aadhaar or PAN fails format validation."
+  },
+  {
+    "error_id": "ERR-007",
+    "name": "INVALID_AADHAAR_FORMAT",
+    "http_status": 422,
+    "user_message": "The Aadhaar number must be exactly 12 digits. Please correct it and try again.",
+    "notes": "Thrown when the Aadhaar number is not exactly 12 numeric digits (length boundary: 11/12/13)."
+  },
+  {
+    "error_id": "ERR-008",
+    "name": "INVALID_PAN_FORMAT",
+    "http_status": 422,
+    "user_message": "The PAN must be 10 characters: 5 letters, 4 digits, and 1 letter. Please correct it and try again.",
+    "notes": "Thrown when the PAN does not match the 5-letter+4-digit+1-letter pattern (length boundary: 9/10/11)."
+  },
+  {
+    "error_id": "ERR-009",
+    "name": "STATE_CHANGE_PERSISTENCE_FAILED",
+    "http_status": 500,
+    "user_message": "Something went wrong while saving your changes. Please try again, and contact support if the problem continues.",
+    "notes": "Thrown when an account, KYC, or transaction state change cannot be durably persisted (FR-014, FR-016)."
+  },
+  {
+    "error_id": "ERR-010",
+    "name": "INSUFFICIENT_BALANCE_BELOW_MINIMUM",
+    "http_status": 422,
+    "user_message": "This transfer cannot be completed because it would leave your account below the required minimum balance. Please enter a smaller amount.",
+    "notes": "Thrown when an outward transfer would drop the account balance below MIN_BALANCE (OQ-002). Boundary: MIN_BALANCE - 0.01 rejected, MIN_BALANCE allowed."
+  },
+  {
+    "error_id": "ERR-011",
+    "name": "DAILY_TRANSFER_CAP_EXCEEDED",
+    "http_status": 422,
+    "user_message": "This transfer would exceed your daily transfer limit. Please wait until your limit resets or enter a smaller amount.",
+    "notes": "Thrown when the day's total plus the new transfer exceeds DAILY_TRANSFER_CAP (OQ-003). Boundary: cap + 0.01 rejected, cap allowed."
+  },
+  {
+    "error_id": "ERR-012",
+    "name": "INVALID_TRANSFER_AMOUNT",
+    "http_status": 422,
+    "user_message": "The transfer amount must be a positive amount. Please enter an amount greater than zero.",
+    "notes": "Thrown when a transfer amount is zero or negative, or has more than 2 decimal places."
+  },
+  {
+    "error_id": "ERR-013",
+    "name": "PERMISSION_DENIED",
+    "http_status": 403,
+    "user_message": "You do not have permission to do this. Please contact an administrator if you believe this is a mistake.",
+    "notes": "Thrown when a role attempts an action outside its permission set, e.g. Bank operations initiating a transfer (FR-010) or accessing data not permitted by role (FR-012)."
+  },
+  {
+    "error_id": "ERR-014",
+    "name": "INTERNAL_SYSTEM_ERROR",
+    "http_status": 500,
+    "user_message": "Something went wrong on our side. Please try again later, and contact support if the problem continues.",
+    "notes": "Generic fallback error; also used where accessibility/testability acceptance conditions are not met (FR-013, FR-015, FR-017)."
+  }
+]
