@@ -6,12 +6,16 @@ on:
     paths:
       - "shared_outputs/*.json"
       - "shared_outputs/traceability_matrix.csv"
+      - "shared_outputs/BRD.md"
       - "scripts/verify_pipeline.py"
+      - "scripts/render_docx.py"
   pull_request:
     paths:
       - "shared_outputs/*.json"
       - "shared_outputs/traceability_matrix.csv"
+      - "shared_outputs/BRD.md"
       - "scripts/verify_pipeline.py"
+      - "scripts/render_docx.py"
   workflow_dispatch:
 
 permissions:
@@ -74,3 +78,19 @@ jobs:
       - name: Fail the job if verification failed
         if: env.failed == 'true'
         run: exit 1
+
+      - name: Render BRD/FRD/UAT as .docx
+        if: env.failed == 'false'
+        run: |
+          pip install python-docx
+          python3 scripts/render_docx.py
+
+      - name: Upload .docx artifacts
+        if: env.failed == 'false'
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdlc-documents
+          path: |
+            shared_outputs/BRD.docx
+            shared_outputs/FRD.docx
+            shared_outputs/UAT.docx
